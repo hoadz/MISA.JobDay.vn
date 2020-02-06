@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
 
+import vuejquery from 'vue-jquery'
+Vue.use(vuejquery)
 Vue.config.productionTip = false
 //bootraps
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
