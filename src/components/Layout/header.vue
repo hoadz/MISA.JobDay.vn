@@ -1,7 +1,8 @@
 <template>
 <div >
     <header class="header">
-        <nav class="navbar navbar-expand-md navbar-light col-md-12 col-12">
+        <div class="content">
+            <nav class="navbar navbar-expand-md navbar-light col-md-12 col-12">
             <div class="navbar-brand iconBackground logo-header" ></div>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto ">
@@ -17,12 +18,13 @@
                     <li class="nav-item mr-3">
                         <a class="nav-link text-primary" href="#"><i class="far fa-bell"></i></a>
                     </li>
-                    <li class="nav-item mr-3">
+                    <li class="nav-item mx-1">
                         <div class="avt"></div>
                     </li>
                 </ul>
             </div>
         </nav>
+        </div>
     </header>
     <!-- <div class="scroll"></div> -->
 </div>
@@ -36,6 +38,9 @@ export default {
 </script>
 
 <style scoped>
+nav.navbar.navbar-expand-md.navbar-light.col-md-12.col-12 {
+    padding: 8px 0px;
+}
     .scroll{
         background-color: #ff5969;
         border-radius: 2px;
@@ -55,6 +60,7 @@ export default {
     }
     .header{
         height: 60px;
+        background-color: #ffffff;
     }
    .logo-header{
        width: 140px;

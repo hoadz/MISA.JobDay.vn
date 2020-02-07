@@ -32,34 +32,40 @@
                     </div>
                     <div class="row width-row-banner p2">
                         <div class="col-sm-12"></div>
-                        <p>Nguyễn Việt Hòa</p>
+                        <p>Nguyễn Thị Như</p>
                     </div>
-                    <div class="row width-row-banner p3">
-                        <p>Bạn cần hoàn thiện thông tin cá nhân tại đây </p>
+                    <div class="row width-row-banner p3 justify-content-center align-items-center">
+                        <div class="div want-info row justify-content-center align-items-center">
+                            <p>Bạn cần hoàn thiện thông tin cá nhân tại đây </p>
+                        </div>
                     </div>
+
                     <!-- muc do hoan thien ho so  -->
                     <div class="filesuccess width-row-banner">
-                        <div class="text-filesuccess row d-flex flex-row">
-                            <p>Mức độ hoàn thiện hồ sơ<span>5%</span></p>
-                            <div class="down ml-auto iconBackground"></div>
-                        </div>
-                        <div class="row icon-spinner ">
-                            <div class="scroll-icon d-flex flex-row">
-                                <div class="left-icon-spinner"></div>
-                                <div class="right-icon-spinner iconBackground"></div>
+                        <div class="file">
+                            <div class="left-24px">
+                                <div class="text-filesuccess row d-flex flex-row">
+                                    <p>Mức độ hoàn thiện hồ sơ<span>5%</span></p>
+                                    <div class="down ml-auto iconBackground"></div>
+                                </div>
+                                <div class="row icon-spinner ">
+                                    <div class="scroll-icon d-flex flex-row">
+                                        <div class="left-icon-spinner"></div>
+                                        <div class="right-icon-spinner iconBackground"></div>
+                                    </div>
+                                    <div class="icon-star ml-auto iconBackground"></div>
+                                </div>
+                                <div class="row  width-row-banner p11">
+                                    <div class="col-sm-1  ">
+                                        <div class="icon-info-banner iconBackground"></div>
+                                    </div>
+                                    <div class="text-info-banner col-sm-11">
+                                        <p class="text1">Cập nhật thông tin cá nhân</p>
+                                        <p class="text2">Thêm thông tin cá nhân để thu hút nhà tuyển dụng</p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="icon-star ml-auto iconBackground"></div>
-                        </div>
-                        <div class="row  width-row-banner p11">
-                            <div class="col-sm-1  ">
-                                <div class="icon-info-banner iconBackground"></div>
-                            </div>
-                            <div class="text-info-banner col-sm-11">
-                                <p class="text1">Cập nhật thông tin cá nhân</p>
-                                <p class="text2">Thêm thông tin cá nhân để thu hút nhà tuyển dụng</p>
-                            </div>
-                        </div>
-                        <div class="row b-filesuccess d-flex flex-row">
+                            <div class="row b-filesuccess d-flex flex-row">
                             <div class="text-prev">
                                 <p>Trước</p>
                             </div>
@@ -71,6 +77,8 @@
                                 <p>Cập nhật ngay</p>
                             </div>
                         </div>
+                        </div>
+                        
 
                         <!-- Mujc tieue nghe nghiep -->
                         <item v-bind:nameItem="info[0]">
@@ -132,6 +140,17 @@ export default {
 </script>
 
 <style scoped>
+.left-24px {
+    margin-left: 24px;
+}
+
+.div.want-info {
+    width: calc(100% - 40px);
+    border-radius: 3.5px;
+    border: 1px dashed #e0e8ec;
+    height: 39px;
+}
+
 .iconBackground.icon-creer-goals-child.d2 {
     background-position: -225px -31px;
 }
@@ -284,15 +303,18 @@ p.text2 {
 .text-filesuccess.row {
     width: 100%;
     margin: 0;
-    margin-top: 30px;
 }
-
-.filesuccess.width-row-banner {
+.file {
     background-color: #ffffff;
-    margin-left: 24px;
+}
+.filesuccess.width-row-banner {
+    /* margin-left: 24px; */
     border-radius: 4px;
+    box-shadow: inset 0 3px 1px rgba(0, 0, 0, .1);
+    margin-top: 16px;
     overflow: hidden;
-    box-shadow: inset 0 3px 6px rgba(0, 0, 0, .2)
+    /* -webkit-box-shadow: inset 0 3px 6px rgba(0, 0, 0, .2); */
+    /* box-shadow: inset 0 3px 6px rgba(0, 0, 0, .2); */
 }
 
 .text-filesuccess.row p {
@@ -312,12 +334,11 @@ p.text2 {
 
 .row.width-row-banner.p2 {
     height: 40px;
+    background-color: #ffffff;
 }
 
 .row.width-row-banner.p3 {
     background-color: #ffffff;
-    border-radius: 3.5px;
-    border: 1px solid #e0e8ec;
     height: 75px;
     overflow: hidden;
     text-align: center;
@@ -328,14 +349,13 @@ p.text2 {
     font-size: 15px;
     color: #ff5969;
     width: 100%;
-    height: 100%;
     margin: 0;
     display: inline-block;
-    padding-top: 3%;
 }
 
 .row.width-row-banner.p1 {
     height: 65px;
+    background-color: #ffffff;
 }
 
 .width-row-banner {
@@ -423,7 +443,6 @@ p.text2 {
 
 .main {
     margin: 0;
-    background-color: #ffffff;
     border-radius: 4px;
     box-shadow: inset 0 3px 6px rgba(0, 0, 0, .1);
     overflow: hidden;

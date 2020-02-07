@@ -1,5 +1,5 @@
 <template>
-<nav class="navbar navbar-expand-lg navbar-light bg-light menu">
+<nav class="navbar navbar-expand-lg navbar-light  menu">
     <div class="collapse navbar-collapse setmargin" id="navbarNav">
         <ul class="navbar-nav ul">
             <li class="nav-item active">
@@ -47,6 +47,8 @@ export default {
         height: 56px;
         overflow: hidden;
         padding: 0;
+        margin-top: 22px ;
+        margin-bottom: 15px;
     }
     .setmargin{
         margin-left: 38px
