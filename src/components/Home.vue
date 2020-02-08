@@ -6,6 +6,7 @@
             <menu-home></menu-home>
             <ContentHome></ContentHome>
         </div>
+        <footerHome></footerHome>
     </div>
     </div>
     
@@ -13,13 +14,16 @@
 <script>
 import headerHome from './Layout/header.vue'
 import menuHome from './Layout/menu.vue'
+import footerHome from './Layout/footer.vue';
 
 import ContentHome from './records management/ContentHome.vue'
 export default {
     components:{
         headerHome,
         menuHome,
-        ContentHome
+        ContentHome,
+        footerHome
+
     }
 }
 </script>

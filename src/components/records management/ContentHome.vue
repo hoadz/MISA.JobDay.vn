@@ -66,75 +66,48 @@
                                 </div>
                             </div>
                             <div class="row b-filesuccess d-flex flex-row">
-                            <div class="text-prev">
-                                <p>Trước</p>
-                            </div>
-                            <div class="text-next d-flex flex-row">
-                                <p>Tiếp</p>
-                                <div class="icon-next iconBackground"></div>
-                            </div>
-                            <div class="text-update-now ml-auto">
-                                <p>Cập nhật ngay</p>
+                                <div class="text-prev">
+                                    <p>Trước</p>
+                                </div>
+                                <div class="text-next d-flex flex-row">
+                                    <p>Tiếp</p>
+                                    <div class="icon-next iconBackground"></div>
+                                </div>
+                                <div class="text-update-now ml-auto">
+                                    <p>Cập nhật ngay</p>
+                                </div>
                             </div>
                         </div>
-                        </div>
-                        
 
-                        <!-- Mujc tieue nghe nghiep -->
-                        <item v-bind:nameItem="info[0]">
-                            <div class="iconBackground icon-creer-goals-child d1"></div>
-                        </item>
-                        <item v-bind:nameItem="info[1]">
-                            <div class="iconBackground icon-creer-goals-child d2"></div>
-                        </item>
-                        <item v-bind:nameItem="info[2]">
-                            <div class="iconBackground icon-creer-goals-child d3"></div>
-                        </item>
-                        <item v-bind:nameItem="info[3]">
-                            <div class="iconBackground icon-creer-goals-child d4"></div>
-                        </item>
-                        <item v-bind:nameItem="info[4]">
-                            <div class="iconBackground icon-creer-goals-child d5"></div>
-                        </item>
-                        <item v-bind:nameItem="info[5]">
-                            <div class="iconBackground icon-creer-goals-child d6"></div>
-                        </item>
-                        <item v-bind:nameItem="info[6]">
-                            <div class="iconBackground icon-creer-goals-child d7"></div>
-                        </item>
-                        <item v-bind:nameItem="info[7]">
-                            <div class="iconBackground icon-creer-goals-child d8"></div>
+                        <!-- Mujc tieue nghe nghiep ...-->
+                        <item v-for="(item,index) in info" v-bind:key="index+1" v-bind:nameItem="item">
+                            <div class="iconBackground icon-creer-goals-child " v-bind:class="['d'+(index+1)]"></div>
                         </item>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-3 col-sm-4 right">
-            <div class="container-right">
-                <div class="row text-top">
-                    <p>Cài đặt chế độ bảo mật Hồ sơ</p>
-                </div>
-                <div class="row">
-
-                </div>
-            </div>
-
+            <content-right></content-right>
         </div>
     </div>
 </div>
 </template>
 
 <script>
+import contentRight from './ContentRight.vue'
 import item from './item.vue';
 export default {
     data() {
         return {
+            d: 'd',
             info: ["Mục tiêu nghề nghiệp", "Học vấn và bằng cấp", "Kinh nghiệm làm việc", "Kỹ năng", "Giải thưởng", "Khóa học", "Dự án", "Hoạt động xã hội và tình nguyện"],
 
         }
     },
     components: {
-        item
+        item,
+        contentRight
     }
 }
 </script>
@@ -164,15 +137,15 @@ export default {
 }
 
 .iconBackground.icon-creer-goals-child.d5 {
-    background-position: -294px -32px;
+    background-position: -297px -30px;
 }
 
 .iconBackground.icon-creer-goals-child.d6 {
-    background-position: -319px -32px;
+    background-position: -322px -32px;
 }
 
 .iconBackground.icon-creer-goals-child.d7 {
-    background-position: -341px -32px;
+    background-position: -344px -32px;
 }
 
 .iconBackground.icon-creer-goals-child.d8 {
@@ -229,6 +202,7 @@ export default {
 
 .row.width-row-banner.p11 {
     height: 80px;
+        margin-top: 20px;
 }
 
 .icon-star.ml-auto.iconBackground {
@@ -302,11 +276,15 @@ p.text2 {
 
 .text-filesuccess.row {
     width: 100%;
+    padding-top: 30px;
+    padding-bottom: 15px;
     margin: 0;
 }
+
 .file {
     background-color: #ffffff;
 }
+
 .filesuccess.width-row-banner {
     /* margin-left: 24px; */
     border-radius: 4px;
