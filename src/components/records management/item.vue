@@ -12,6 +12,7 @@
             <p> Thêm mới</p>
         </div>
     </div>
+    
 </div>
 </template>
 
@@ -21,6 +22,8 @@ export default {
         nameItem:{
             type:String,
         }
+    },
+    components:{
     }
 }
 </script>
@@ -31,6 +34,7 @@ export default {
     border-radius: 3.5px;
     border: 1px dashed #e0e8ec;
     height: 39px;
+    cursor: pointer;
 }
 .row.new-item {
     height: 80px;

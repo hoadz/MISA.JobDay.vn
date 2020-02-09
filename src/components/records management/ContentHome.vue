@@ -1,13 +1,13 @@
 <template>
 <div>
     <div class="row main">
-        <div class="col-md-9 col-sm-8 left containerBanner">
+        <div class=" col-8 left containerBanner">
             <div>
                 <div class="banneravt"></div>
                 <div class="content-banner">
                     <div class="row width-row-banner p1">
                         <div class="d-flex flex-row banner-top mt-3">
-                            <div class="avt mr-auto"></div>
+                            <div class="avt mr-auto" v-on:click="activeDialog"></div>
                             <div class="banner-right d-flex flex-row">
                                 <div class="dropdown mr-2">
                                     <a v-on:click.prevent class="dropdown-banner dropdown-toggle my-auto" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -37,6 +37,7 @@
                     <div class="row width-row-banner p3 justify-content-center align-items-center">
                         <div class="div want-info row justify-content-center align-items-center">
                             <p>Bạn cần hoàn thiện thông tin cá nhân tại đây </p>
+                            <popup ref="activeClick" ></popup>
                         </div>
                     </div>
 
@@ -87,7 +88,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3 col-sm-4 right">
+        <div class="col-4 right">
             <content-right></content-right>
         </div>
     </div>
@@ -95,6 +96,8 @@
 </template>
 
 <script>
+ import popup from './dialogAvata.vue'
+
 import contentRight from './ContentRight.vue'
 import item from './item.vue';
 export default {
@@ -105,9 +108,17 @@ export default {
 
         }
     },
+    methods: {
+        activeDialog() {
+            console.log(this.$refs);
+             this.$refs.activeClick.click();
+        }
+    },
     components: {
         item,
-        contentRight
+        contentRight,
+         popup
+
     }
 }
 </script>
@@ -202,7 +213,7 @@ export default {
 
 .row.width-row-banner.p11 {
     height: 80px;
-        margin-top: 20px;
+    margin-top: 20px;
 }
 
 .icon-star.ml-auto.iconBackground {
@@ -347,6 +358,7 @@ p.text2 {
 
 .avt {
     border-radius: 50%;
+    cursor: pointer;
     width: 112px;
     height: 112px;
     overflow: hidden;
@@ -431,13 +443,7 @@ p.text2 {
 
 }
 
-.left {
-    /* height: 70vh; */
-
-}
-
 .right {
-    height: 70vh;
-    background-color: blueviolet
+    /* background-color: blueviolet */
 }
 </style>
