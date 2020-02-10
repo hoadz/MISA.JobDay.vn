@@ -9,8 +9,8 @@
                         <div class="d-flex flex-row banner-top mt-3">
                             <div class="avt mr-auto" v-on:click="activeDialog"></div>
                             <div class="banner-right d-flex flex-row">
-                                <div class="dropdown mr-2">
-                                    <a v-on:click.prevent class="dropdown-banner dropdown-toggle my-auto" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="dropdown mr-3">
+                                    <a v-on:click.prevent class="  dropdown-banner dropdown-toggle my-auto" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Thêm mục
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -21,9 +21,24 @@
                                         <a class="dropdown-item" href="#">khác </a>
                                     </div>
                                 </div>
-                                <div class="icon1 mr-2">
-                                    <div class="iconBackground"></div>
+                                <div class="icon1 mr-3 ml-3">
+                                    <!-- <a v-on:click.prevent class=" icon-three dropdown-banner iconBackground dropdown-toggle my-auto" href="#"   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    </a> -->
+                                    <div class="dropdown-menu a-icon-three" aria-labelledby="dropdownMenuLink">
+                                        <!-- <a class="dropdown-item" href="#">Thành tựu </a>
+                                            <a class="dropdown-item" href="#">khác </a> -->
+                                        <div class="download-sum d-flex justify-content-center align-items-center">
+                                            <div class="icon-download iconBackground"></div>
+                                            <p class="text-download">Chia sẻ hồ sơ</p>
+                                        </div>
+                                        <div class=" share d-flex justify-content-center align-items-center">
+                                            <div class="icon-share iconBackground"></div>
+                                            <p class="text-share">Tải xuống PDF</p>
+                                        </div>
+                                    </div>
+                                    <div class="iconBackground icon-three" data-toggle="dropdown"></div>
                                 </div>
+
                                 <div class="icon2 mr-3">
                                     <div class="iconBackground"></div>
                                 </div>
@@ -37,7 +52,7 @@
                     <div class="row width-row-banner p3 justify-content-center align-items-center">
                         <div class="div want-info row justify-content-center align-items-center">
                             <p>Bạn cần hoàn thiện thông tin cá nhân tại đây </p>
-                            <popup ref="activeClick" ></popup>
+
                         </div>
                     </div>
 
@@ -92,12 +107,16 @@
             <content-right></content-right>
         </div>
     </div>
+    <div>
+        <popup ref="activeClick" />
+        <Education ref="activeClick1"/>
+    </div>
 </div>
 </template>
 
 <script>
- import popup from './dialogAvata.vue'
-
+import popup from '../popup/dialogAvata.vue'
+import Education from '../popup/Education.vue'
 import contentRight from './ContentRight.vue'
 import item from './item.vue';
 export default {
@@ -105,25 +124,83 @@ export default {
         return {
             d: 'd',
             info: ["Mục tiêu nghề nghiệp", "Học vấn và bằng cấp", "Kinh nghiệm làm việc", "Kỹ năng", "Giải thưởng", "Khóa học", "Dự án", "Hoạt động xã hội và tình nguyện"],
-
         }
     },
     methods: {
         activeDialog() {
-            console.log(this.$refs);
-             this.$refs.activeClick.click();
+            // console.log('tag', this.$refs.activeClick)
+            this.$refs.activeClick.clickShowInfoAvt();
+        },
+        activeDialog1() {
+            // console.log('tag', this.$refs.activeClick1)
+            this.$refs.activeClick1.clickShowInfo();
         }
     },
     components: {
         item,
         contentRight,
-         popup
+        popup,
+        Education
 
     }
 }
 </script>
 
 <style scoped>
+
+.dropdown-banner:hover {
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, .1);
+    background-color: #FB727F !important;
+}
+.a-icon-three {
+    top: 20px !important;
+    left: -65px !important;
+}
+p.text-share {
+    font-size: 15px;
+    color: #212121;
+    margin: 0;
+}
+
+.icon-share.iconBackground {
+    width: 16px;
+    height: 16px;
+    background-position: -94px 0px;
+    margin-right: 10px;
+}
+
+p.text-download {
+    margin: 0;
+    font-size: 15px;
+    color: #212121;
+}
+
+.icon-download {
+    width: 16px;
+    height: 16px;
+    background-position: -81px 0px;
+    margin-right: 10px;
+}
+
+.download-sum,
+.share {
+    background-color: #ffebed;
+    width: 158px;
+    height: 40px;
+}
+
+.icon1 .icon-three {
+    width: 24px;
+    height: 29px;
+    background-position: -152px -28px;
+    margin-left: 7px;
+    margin-top: 2px;
+}
+
+.dropdown-toggle::after {
+    border: none !important;
+}
+
 .left-24px {
     margin-left: 24px;
 }
@@ -394,14 +471,6 @@ p.text2 {
     height: 39px;
     overflow: hidden;
     cursor: pointer;
-}
-
-.icon1 div {
-    width: 24px;
-    height: 29px;
-    background-position: -152px -28px;
-    margin-left: 7px;
-    margin-top: 2px;
 }
 
 .dropdown-banner {

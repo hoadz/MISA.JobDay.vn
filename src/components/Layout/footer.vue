@@ -25,7 +25,7 @@
                             <li><a href="">Cài đặt gợi ý làm việc</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-4 col-12 ">
+                    <div class=" ">
                         <div class="row connection">
                             <h4 class="title">Kết nối</h4>
                             <ul>

@@ -28,6 +28,16 @@ export default {
 }
 </script>
 <style >
+*{
+    font-family: 'Open Sans', sans-serif ;
+}
+.btn:focus, .btn.focus {
+    box-shadow: none;
+}
+
+input:focus, input.focus {
+    border: 1px solid #ff5969 !important;
+}
 .containerHome{
     margin: 0 auto;
     background-color: #f0f0f0;
@@ -38,6 +48,5 @@ export default {
 }
 .iconBackground{
        background-image: url('../assets/icon.svg');
-        
     }
 </style>

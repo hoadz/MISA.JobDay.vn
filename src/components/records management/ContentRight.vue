@@ -37,7 +37,7 @@
                 </div>
                 <div class="row text-e2 d-flex align-items-center justify-content-center">
                     <div class="d-flex align-items-center justify-content-center">
-                        
+
                         <p>Nhận thông báo</p>
                     </div>
                 </div>
@@ -46,7 +46,7 @@
         </div>
     </div>
     <!-- khuc thu 3 -->
-     <div class="d3 row ml-auto">
+    <div class="d3 row ml-auto">
         <div class="row text-top d-flex  align-item-center">
             <div class="justify-content-center align-items-center d-flex">
                 <p>Bạn đã có CV chưa?</p>
@@ -57,11 +57,11 @@
                 <p class="d3-text ">Tạo CV chuyên nghiệp nhận ngay việc làm ưng ý.</p>
             </div>
             <div class="row text-e3 d-flex align-items-center justify-content-center">
-                    <div class="d-flex align-items-center justify-content-center e3-1">
-                        <div class="text-e2-icon iconBackground"></div>    
-                        <p>Tạo CV ngay</p>
-                    </div>
+                <div class="d-flex align-items-center justify-content-center e3-1">
+                    <div class="text-e2-icon iconBackground"></div>
+                    <p>Tạo CV ngay</p>
                 </div>
+            </div>
         </div>
     </div>
 </div>
@@ -74,23 +74,38 @@ export default {
 </script>
 
 <style scoped>
+.e3-1:hover p {
+    color: #FF5969 !important;
+}
+.row.text-e2 div:hover p {color: #FF5969;}
+.row.text-e2 div:hover {
+    border: 1px solid  #FF5969;
+    }
+.e3-1:hover {
+    color: #FF5969 !important;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, .1);
+    border: thin dashed #FF5969 !important;
+}
+
 .text-e2-icon.iconBackground {
     margin-right: 6px;
     width: 16px;
     height: 16px;
     background-position: -52px -36px;
 }
+
 .row.text-e3 p {
     margin: 0;
     font-size: 15px;
-    color: #ff5969;
+    color: #1d1d1d;
 }
+
 .row.text-e3 {
     width: 100%;
     margin: 0;
     padding-left: 15px;
     padding-right: 20px;
-        margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .row.text-e3 .e3-1 {
@@ -102,6 +117,7 @@ export default {
     overflow: hidden;
     cursor: pointer;
 }
+
 .d3.row.ml-auto {
     background-color: #ffffff;
     border-radius: 4px;
@@ -113,20 +129,22 @@ export default {
     margin-top: 17px;
     width: 90%;
 }
+
 .t10 {
     height: 10%;
     width: 100%;
 }
+
 .row.text-e2 p {
-    font-size: 15px;
-    color: #ff5969;
+       font-size: 15px;
+    color: #212121;
     margin: 0;
 
 }
 
 .row.text-e2 div {
     border-radius: 3.5px;
-    border: 1px solid #ff5969;
+    border: 1px solid #E0E8EC;
     width: 100%;
     height: 39px;
     overflow: hidden;
@@ -139,7 +157,7 @@ export default {
 }
 
 .text-e {
-       background-color: #ffffff;
+    background-color: #ffffff;
     border-radius: 4px;
     border: 1px solid #e0e8ec;
     width: 100%;
@@ -148,7 +166,7 @@ export default {
 }
 
 .row.text-e1 {
-        width: calc(100% + 15px);
+    width: calc(100% + 15px);
     /* padding-left: 15px; */
     height: 30%;
 }
@@ -179,7 +197,8 @@ p.d2-text {
     font-size: 15px;
     color: #666666;
     height: 30%;
-        margin: 0;
+    margin: 0;
+    padding-top: 10px;
     /* padding-right: 20px; */
 }
 
