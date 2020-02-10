@@ -5,7 +5,7 @@
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog dialog-all" role="document">
             <div class="modal-content body-dialog">
                 <div class="modal-header text-header">
@@ -117,6 +117,12 @@ export default {
 </script>
 
 <style scoped>
+.modal-dialog.dialog-all {
+    margin: 0;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-70%) !important;
+}
 .custom-control-input:checked ~ .custom-control-label::before{
     color: #fff;
     border-color: #ff5969;

@@ -22,11 +22,7 @@
                                     </div>
                                 </div>
                                 <div class="icon1 mr-3 ml-3">
-                                    <!-- <a v-on:click.prevent class=" icon-three dropdown-banner iconBackground dropdown-toggle my-auto" href="#"   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    </a> -->
                                     <div class="dropdown-menu a-icon-three" aria-labelledby="dropdownMenuLink">
-                                        <!-- <a class="dropdown-item" href="#">Thành tựu </a>
-                                            <a class="dropdown-item" href="#">khác </a> -->
                                         <div class="download-sum d-flex justify-content-center align-items-center">
                                             <div class="icon-download iconBackground"></div>
                                             <p class="text-download">Chia sẻ hồ sơ</p>
@@ -109,14 +105,14 @@
     </div>
     <div>
         <popup ref="activeClick" />
-        <Education ref="activeClick1"/>
+        <!-- <Education ref="activeClick1" /> -->
     </div>
 </div>
 </template>
 
 <script>
 import popup from '../popup/dialogAvata.vue'
-import Education from '../popup/Education.vue'
+// import Education from '../popup/Education.vue'
 import contentRight from './ContentRight.vue'
 import item from './item.vue';
 export default {
@@ -131,31 +127,32 @@ export default {
             // console.log('tag', this.$refs.activeClick)
             this.$refs.activeClick.clickShowInfoAvt();
         },
-        activeDialog1() {
-            // console.log('tag', this.$refs.activeClick1)
-            this.$refs.activeClick1.clickShowInfo();
-        }
+        // activeDialog1() {
+        //     // console.log('tag', this.$refs.activeClick1)
+        //     this.$refs.activeClick1.clickShowInfo();
+        // }
     },
     components: {
         item,
         contentRight,
         popup,
-        Education
+        // Education
 
     }
 }
 </script>
 
 <style scoped>
-
 .dropdown-banner:hover {
     box-shadow: inset 0 2px 10px rgba(0, 0, 0, .1);
     background-color: #FB727F !important;
 }
+
 .a-icon-three {
     top: 20px !important;
     left: -65px !important;
 }
+
 p.text-share {
     font-size: 15px;
     color: #212121;

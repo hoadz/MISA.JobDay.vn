@@ -9,7 +9,7 @@
     <div class="row new-item d-flex flex-row align-items-center justify-content-center ">
         <div class="twe-item d-flex flex-row align-items-center justify-content-center">
             <div class="item-icon iconBackground "></div>
-            <p> Thêm mới</p>
+            <p> Thêm mới</p>{{key}}
         </div>
     </div>
     
@@ -21,7 +21,7 @@ export default {
     props:{
         nameItem:{
             type:String,
-        }
+        },
     },
     components:{
     }
