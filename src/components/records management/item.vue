@@ -8,7 +8,7 @@
         </div>
         <div class="row new-item d-flex flex-row align-items-center justify-content-center ">
             <div class="twe-item d-flex flex-row align-items-center justify-content-center" 
-            v-on:click="changePupop">
+            v-on:click="changePupop" >
                 <div class="item-icon iconBackground "></div>
                 <p> Thêm mới</p>
             </div>

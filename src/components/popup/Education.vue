@@ -2,7 +2,6 @@
 <div class="Education">
     <!-- Button trigger modal -->
     <button type="button" style="display:none" class="btn btn-primary" data-toggle="modal" data-target="#Education" ref="active">
-        Launch demo modal
     </button>
 
     <!-- Modal -->
@@ -75,16 +74,17 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group textaer">
                             <label for="" class="text-form1">Mô tả chi tiết</label>
                             <textarea class="form-control rounded-0 detail" id="exampleFormControlTextarea2" rows="3"></textarea>
                         </div>
                     </div>
                 </div>
-                 <div class="modal-footer  dialog-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn-color">Save changes</button>
-                    </div>
+                
+                <div class="modal-footer  dialog-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn-color">Lưu thông tin</button>
+                </div>
             </div>
         </div>
     </div>
@@ -102,9 +102,43 @@ export default {
 </script>
 
 <style scoped>
+.form-group.textaer {
+    margin-bottom: 0;
+}
+
+.modal-footer.dialog-footer {
+    padding-top: 0;
+    border-top: none;
+    padding-bottom: 20px;
+    padding-right: 24px;
+}
+
+.form-group.textera {
+    margin-bottom: 0;
+}
+
+button.btn-color {
+    width: 160px;
+    background-color: #ff5969;
+    border-radius: 4px;
+    height: 41px;
+    overflow: hidden;
+    border: none;
+    font-size: 16px;
+    color: #ffffff;
+    line-height: 41px;
+    margin-right: 0;
+}
+
+button.btn-color:hover {
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, .1);
+    background-color: #FB727F !important;
+}
+
 .form-group.col-md-6 span {
     color: #ff5969;
 }
+
 label.text-form1 span {
     color: #ff5969;
 }
@@ -116,8 +150,11 @@ label.text-form1 {
 }
 
 .modal-body.dialog-body {
-    padding: 24px;
+    margin: 24px;
     padding-top: 10px;
+    background-color: #f9f9f9;
+    border-radius: 3.5px;
+    border: 1px solid #e0e8ec;
 }
 
 .text-title {
@@ -130,9 +167,11 @@ label.text-form1 {
     background-color: #ffffff;
     border-radius: 4px;
     box-shadow: inset 0 3px 6px rgba(0, 0, 0, .1);
-    width: 786px;
+    /* width: 786px; */
     /* height: 720px; */
     overflow: hidden;
+    top: 25%;
+    transform: translateY(-25%);
 }
 
 .modal-header.text-header {

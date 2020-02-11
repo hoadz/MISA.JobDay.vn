@@ -59,6 +59,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 .modal-footer.dialog-footer {
     padding-top: 0;
     border-top: none;
