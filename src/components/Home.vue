@@ -31,12 +31,16 @@ export default {
 *{
     font-family: 'Open Sans', sans-serif ;
 }
+.ck-editor .ck-editor__main .ck-content {
+        min-height: calc(179px - 38px);
+    }
+
 .btn:focus, .btn.focus {
     box-shadow: none;
 }
 
 input:focus, input.focus {
-    border: 1px solid #ff5969 !important;
+    /* border: 1px solid #ff5969 !important; */
 }
 .containerHome{
     margin: 0 auto;

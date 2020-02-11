@@ -9,9 +9,10 @@
         <div class="row r1 justify-content-end">
             <div class="text-icon-bottom row">
                 <div class="col-sm-2 active-icon">
-                    <div class="icon-two">
+                    <!-- <div class="icon-two">
                         <div class="icon-one"></div>
-                    </div>
+                    </div> -->
+                    <toggle-button color="#ff5969" :width="46" :height="26" />
                 </div>
                 <div class="col-sm-10 text-thongbao">
                     <p class="text-status">Trạng thái tìm việc đang tắt</p>
@@ -68,8 +69,11 @@
 </template>
 
 <script>
+import { ToggleButton } from 'vue-js-toggle-button'
 export default {
-
+    components:{
+        ToggleButton
+    }
 }
 </script>
 

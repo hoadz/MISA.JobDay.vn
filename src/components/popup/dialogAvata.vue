@@ -121,7 +121,7 @@ export default {
     margin: 0;
     width: 100%;
     left: 50%;
-    transform: translateX(-70%) !important;
+    transform: translateX(-73%) !important;
 }
 .custom-control-input:checked ~ .custom-control-label::before{
     color: #fff;
@@ -156,14 +156,23 @@ input.form-control.text-form2 {
     color: #212121;
 }
 
-.form-body span {
+label.text-form1 span {
+    margin-left: 5px;
     color: #ff5969;
 }
 
 .form-body {
-    margin: 80px 25px 10px 25px;
+      margin: 80px 10px 10px 25px;
+    padding-right: 10px;
+    padding-left: 2px;
+    overflow: auto;
+    overflow-x: hidden;
+    max-height: calc(100vh - 500px);
+    
 }
-
+/* div#exampleModal {
+    overflow: hidden;
+} */
 .avt-image.iconBackground {
     width: 18px;
     height: 16px;
@@ -229,7 +238,7 @@ input.form-control.text-form2 {
 
 .modal-header.text-header {
     padding-left: 24px;
-    padding-top: 26px;
+    padding-top: 20px;
 }
 
 .modal-content.body-dialog {
@@ -237,12 +246,12 @@ input.form-control.text-form2 {
     border-radius: 4px;
     box-shadow: inset 0 3px 6px rgba(0, 0, 0, .1);
     width: 786px;
-    height: 1078px;
+    /* height: 1078px; */
     overflow: hidden;
 }
 
 .text-title {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 700;
     color: #212121;
 }

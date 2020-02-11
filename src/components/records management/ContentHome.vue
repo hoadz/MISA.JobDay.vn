@@ -91,8 +91,8 @@
                             </div>
                         </div>
 
-                        <!-- Mujc tieue nghe nghiep ...-->
-                        <item v-for="(item,index) in info" v-bind:key="index+1" v-bind:nameItem="item">
+                        <!-- title and icon  ...-->
+                        <item v-for="(item,index) in items" v-bind:key="index+1" v-bind:item="item">
                             <div class="iconBackground icon-creer-goals-child " v-bind:class="['d'+(index+1)]"></div>
                         </item>
                     </div>
@@ -105,32 +105,58 @@
     </div>
     <div>
         <popup ref="activeClick" />
-        <!-- <Education ref="activeClick1" /> -->
     </div>
 </div>
 </template>
 
 <script>
 import popup from '../popup/dialogAvata.vue'
-// import Education from '../popup/Education.vue'
 import contentRight from './ContentRight.vue'
 import item from './item.vue';
 export default {
     data() {
         return {
-            d: 'd',
-            info: ["Mục tiêu nghề nghiệp", "Học vấn và bằng cấp", "Kinh nghiệm làm việc", "Kỹ năng", "Giải thưởng", "Khóa học", "Dự án", "Hoạt động xã hội và tình nguyện"],
+            //titleItems: ["Mục tiêu nghề nghiệp", "Học vấn và bằng cấp", "Kinh nghiệm làm việc", "Kỹ năng", "Giải thưởng", "Khóa học", "Dự án", "Hoạt động xã hội và tình nguyện"],
+            items: [
+                {
+                    title: "Mục tiêu nghề nghiệp",
+                    name: "CareerGoals"
+                },
+                {
+                    title: "Học vấn và bằng cấp",
+                    name: "Education"
+                },
+                {
+                    title: "Kinh nghiệm làm việc",
+                    name: "ExpJob"
+                },
+                {
+                    title:  "Kỹ năng",
+                    name: "CareerGoals"
+                },
+                {
+                    title: "Giải thưởng",
+                    name: "CareerGoals"
+                }, 
+                {
+                    title: "Khóa học",
+                    name: "CareerGoals"
+                }, 
+                {
+                    title: "Dự án", 
+                    name: "CareerGoals"
+                },
+                {
+                    title: "Hoạt động xã hội và tình nguyện",
+                    name: "CareerGoals"
+                },
+            ]
         }
     },
     methods: {
         activeDialog() {
-            // console.log('tag', this.$refs.activeClick)
             this.$refs.activeClick.clickShowInfoAvt();
         },
-        // activeDialog1() {
-        //     // console.log('tag', this.$refs.activeClick1)
-        //     this.$refs.activeClick1.clickShowInfo();
-        // }
     },
     components: {
         item,

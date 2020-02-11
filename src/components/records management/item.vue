@@ -1,30 +1,45 @@
 <template>
-<div class="career-goals">
-    <div class="row creer-goals-text">
-        <div class="icon-creer-goals col-sm-1 ">
-           <slot></slot>
+    <div class="career-goals">
+        <div class="row creer-goals-text">
+            <div class="icon-creer-goals col-sm-1 ">
+                <slot></slot>
+            </div>
+            <p class="col-sm-11">{{item.title}}</p>
         </div>
-        <p class="col-sm-11">{{nameItem}}</p>
-    </div>
-    <div class="row new-item d-flex flex-row align-items-center justify-content-center ">
-        <div class="twe-item d-flex flex-row align-items-center justify-content-center">
-            <div class="item-icon iconBackground "></div>
-            <p> Thêm mới</p>{{key}}
+        <div class="row new-item d-flex flex-row align-items-center justify-content-center ">
+            <div class="twe-item d-flex flex-row align-items-center justify-content-center" 
+            v-on:click="changePupop">
+                <div class="item-icon iconBackground "></div>
+                <p> Thêm mới</p>
+            </div>
+        </div>
+        <div class="popup">
+            <component v-bind:is="item.name" ref="activePopup"></component>
         </div>
     </div>
-    
-</div>
 </template>
 
 <script>
+import CareerGoals from '../popup/CareerGoals.vue';
+import Education from '../popup/Education.vue';
+import ExpJob from '../popup/ExpJob.vue'
 export default {
-    props:{
-        nameItem:{
-            type:String,
-        },
+    props: {
+        item:{
+            type:Object,
+            default :() =>{}
+        }
     },
-    components:{
-    }
+    components: {
+        CareerGoals,
+        Education,
+        ExpJob
+    },
+    methods: {
+      changePupop(){
+          this.$refs.activePopup.active();
+      }  
+    },
 }
 </script>
 
@@ -36,14 +51,14 @@ export default {
     height: 39px;
     cursor: pointer;
 }
+
 .row.new-item {
     height: 80px;
 }
+
 .icon-creer-goals.col-sm-1 {
     padding-top: 6px;
 }
-
-
 
 .item-icon.iconBackground {
     width: 24px;
@@ -68,16 +83,14 @@ export default {
 
 .career-goals {
     box-shadow: inset 0 3px 0px rgba(0, 0, 0, .1);
-        background-color: #ffffff;
-        margin-top: 16px
+    background-color: #ffffff;
+    margin-top: 16px
 }
 
 .icon-creer-goals.col-sm-1.iconBackground {
     width: 24px;
     height: 24px;
 }
-
-
 
 .row.creer-goals-text p {
     margin: 0;
@@ -86,6 +99,4 @@ export default {
     font-weight: 500;
     color: #212121;
 }
-
-
 </style>
