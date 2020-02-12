@@ -117,7 +117,9 @@ button.btn.btn-primary {
     padding: 24px;
     padding-top: 10px;
 }
-
+.btn-color{
+    margin-right: 0;
+}
 /* .body-dialog {
     background-color: #ffffff;
     border-radius: 4px;

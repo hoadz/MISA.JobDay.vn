@@ -92,6 +92,13 @@ export default {
 </script>
 
 <style scoped>
+.form-group.col-md-6 {
+    margin-bottom: 0;
+}
+
+.modal-body.dialog-body span {
+    color: #ff5969;
+}
 .item-icon.iconBackground {
     width: 24px;
     margin-right: 6px;

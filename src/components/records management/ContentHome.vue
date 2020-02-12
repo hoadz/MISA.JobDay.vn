@@ -132,23 +132,23 @@ export default {
                 },
                 {
                     title:  "Kỹ năng",
-                    name: "CareerGoals"
+                    name: "skill"
                 },
                 {
                     title: "Giải thưởng",
-                    name: "CareerGoals"
+                    name: "Prize"
                 }, 
                 {
                     title: "Khóa học",
-                    name: "CareerGoals"
+                    name: "Course"
                 }, 
                 {
                     title: "Dự án", 
-                    name: "CareerGoals"
+                    name: "Project"
                 },
                 {
                     title: "Hoạt động xã hội và tình nguyện",
-                    name: "CareerGoals"
+                    name: "VolunteerActivities"
                 },
             ]
         }

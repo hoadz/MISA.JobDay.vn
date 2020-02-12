@@ -22,7 +22,12 @@
 <script>
 import CareerGoals from '../popup/CareerGoals.vue';
 import Education from '../popup/Education.vue';
-import ExpJob from '../popup/ExpJob.vue'
+import ExpJob from '../popup/ExpJob.vue';
+import Prize from '../popup/Prize.vue';
+import Course from '../popup/Course.vue'
+import Project from '../popup/Project.vue'
+import VolunteerActivities from '../popup/VolunteerActivities.vue'
+import skill from '../popup/skill.vue'
 export default {
     props: {
         item:{
@@ -33,7 +38,12 @@ export default {
     components: {
         CareerGoals,
         Education,
-        ExpJob
+        ExpJob,
+        Prize,
+        Course,
+        Project,
+        VolunteerActivities,
+        skill
     },
     methods: {
       changePupop(){
