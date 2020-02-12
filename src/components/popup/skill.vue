@@ -13,16 +13,16 @@
                 </div>
                 <div class="modal-content body-dialog">
                     <div class="scroll">
-                        <div class="modal-body dialog-body" v-for="child in countChilds" v-bind:key="child">
+                        <div class="modal-body dialog-body" v-for="(item,index) in countChilds" v-bind:key="index">
                             <div class="form-body">
                                 <div class="form-group">
                                     <label for="" class="text-form1">Kỹ năng chuyên môn <span>*</span></label>
-                                    <input type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Ki nang cua ban" v-model="child.text">
+                                    <input type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Ki nang cua ban" v-model="item.text">
                                     <small id="" class="form-text text-muted"></small>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="text-form1">Đánh giá <span>*</span></label>
-                                    <star-rating v-model="child.rating" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" :increment="0.5" :max-rating=5 :star-size=30 :padding=10 active-color="#ff5969"></star-rating>
+                                    <star-rating v-model="item.rating" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" :increment="0.5" :max-rating=5 :star-size=30 :padding=10 active-color="#ff5969"></star-rating>
                                     <small id="" class="form-text text-muted"></small>
                                 </div>
                             </div>
@@ -80,6 +80,7 @@ export default {
     overflow: auto;
     overflow-x: hidden;
 }
+
 .modal-body.dialog-body {
     margin: 24px;
     padding-top: 10px;

@@ -47,7 +47,7 @@
                     </div>
                     <div class="row width-row-banner p3 justify-content-center align-items-center">
                         <div class="div want-info row justify-content-center align-items-center">
-                            <p>Bạn cần hoàn thiện thông tin cá nhân tại đây </p>
+                            <p>Bạn cần hoàn thiện thông tin cá nhân để có thể hiển thị đầy đủ</p>
 
                         </div>
                     </div>

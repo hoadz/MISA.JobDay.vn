@@ -24,8 +24,8 @@
                     </div>
                 </div>
                 <div class="modal-footer dialog-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                    <button data-v-134bea0e="" type="button" class=" btn-color">Lưu thông tin </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" ref="close">Hủy</button>
+                    <button data-v-134bea0e="" type="button" class=" btn-color" @click="commitData">Lưu thông tin </button>
                 </div>
             </div>
         </div>
@@ -40,20 +40,34 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export default {
     data() {
         return {
-            editor: ClassicEditor,
+
             editorData: "",
+            dataPopup:{
+                name : "CareerGoals",
+                DataCareer : ""
+            },
+            editor: ClassicEditor,
             editorConfig: {
                 charset: 'utf-8',
                 trim_trailing_whitespace: true,
                 insert_final_newline: true,
                 toolbar: ['bold', 'italic', 'bulletedList', 'numberedList', 'blockQuote']
-            }
+            },
+
         };
     },
     methods: {
         active: function () {
             this.$refs.active.click();
         },
+        commitData(){
+            this.dataPopup.DataCareer=this.editorData;
+             //console.log(this.dataPopup.DataCareer);
+           this.$emit('CreateCareerGoals',this.dataPopup);
+           //console.log(this.dataPopup);
+           this.editorData="";
+           this.$refs.close.click();
+        }
     }
 }
 </script>
