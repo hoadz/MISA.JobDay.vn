@@ -26,7 +26,7 @@
             <div class="row aa" v-if="this.nameSkill == 'skill' && stateAdd" >
                 <div class="col-sm-6 aaa" v-for="(item, index) in dataArray" v-bind:key="index">    
                     <p>{{item.text}}</p>
-                    <star-rating :read-only=true v-model="item.rating" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" :increment="0.5" :max-rating=5 :star-size=30 :padding=10 active-color="#ff5969"></star-rating>
+                    <star-rating :show-rating=false :read-only=true v-model="item.rating" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" :increment="0.5" :max-rating=5 :star-size=30 :padding=10 active-color="#ff5969"></star-rating>
                 </div>
             </div>
             <!-- skill o tren va phan con lai -->
@@ -130,6 +130,7 @@ export default {
 <style scoped>
 .row.aa {
     width: 100%;
+        margin: 0;
 }
 
 .textCareerGoals1 {
@@ -240,11 +241,16 @@ export default {
     height: 24px;
     background-position: -47px -34px;
 }
+.col-sm-6.aaa {
+    padding: 0;
+    padding-left: 24px;
+    margin-bottom: 21px;
+}
 
 .new-item p {
-    font-size: 15px;
-    color: #1d1d1d;
-    margin-bottom: 2px;
+    font-size: 17px;
+    color: #212121;
+    margin-bottom: 10px;
 }
 
 .icon-creer-goals.col-sm-1 {
