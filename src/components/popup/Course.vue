@@ -15,12 +15,12 @@
                     <div class="form-body">
                         <div class="form-group">
                             <label for="" class="text-form1">Tên khóa học<span>*</span></label>
-                            <input type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Tên khóa học">
+                            <input v-model="DataMain.nameCourse" type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Tên khóa học">
                             <small id="" class="form-text text-muted"></small>
                         </div>
                         <div class="form-group">
                             <label for="" class="text-form1">Tổ chức <span>*</span></label>
-                            <input type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Tổ chức">
+                            <input v-model="DataMain.organize" type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Tổ chức">
                             <small id="" class="form-text text-muted"></small>
                         </div>
                         <div class="form-row mt-3">
@@ -28,10 +28,10 @@
                                 <label for="" class="text-form1">Thời gian bắt đầu </label>
                                 <div class="form-row mt-2">
                                     <div class="col-6">
-                                        <input type="number" @keypress="isNumber($event)" class="form-control " max="12" min="1" aria-describedby="emailHelp" placeholder="Tháng">
+                                        <input v-model="monthStart" type="number" @keypress="isNumber($event)" class="form-control " max="12" min="1" aria-describedby="emailHelp" placeholder="Tháng">
                                     </div>
                                     <div class="col-6">
-                                        <input type="number" @keypress="isNumber($event)" class="form-control " max="3000" min="1" aria-describedby="emailHelp" placeholder="Năm">
+                                        <input v-model="mouthEnd" type="number" @keypress="isNumber($event)" class="form-control " max="3000" min="1" aria-describedby="emailHelp" placeholder="Năm">
                                     </div>
                                 </div>
                             </div>
@@ -40,10 +40,10 @@
                                 <label for="">Thời gian kết thúc </label>
                                 <div class="form-row mt-2">
                                     <div class="col-6">
-                                        <input type="number" @keypress="isNumber($event)" class="form-control " max="12" min="1" aria-describedby="emailHelp" placeholder="Tháng">
+                                        <input v-model="yearStart" type="number" @keypress="isNumber($event)" class="form-control " max="12" min="1" aria-describedby="emailHelp" placeholder="Tháng">
                                     </div>
                                     <div class="col-6">
-                                        <input type="number" @keypress="isNumber($event)" class="form-control " max="3000" min="1" aria-describedby="emailHelp" placeholder="Năm">
+                                        <input v-model="yearEnd" type="number" @keypress="isNumber($event)" class="form-control " max="3000" min="1" aria-describedby="emailHelp" placeholder="Năm">
                                     </div>
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
 
                         <div class="form-group textaer">
                             <label for="" class="text-form1">Mô tả chi tiết</label>
-                            <textarea class="form-control rounded-0 detail" placeholder="Mô tả chi tiết khóa học" id="exampleFormControlTextarea2" rows="3"></textarea>
+                            <textarea v-model="DataMain.describe" class="form-control rounded-0 detail" placeholder="Mô tả chi tiết khóa học" id="exampleFormControlTextarea2" rows="3"></textarea>
                         </div>
 
                     </div>
@@ -64,8 +64,8 @@
 
                 </div> -->
                 <div class="modal-footer  dialog-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                    <button type="button" class="btn-color">Lưu thông tin</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" ref="close">Hủy</button>
+                    <button type="button" class="btn-color" @click="commitdata">Lưu thông tin</button>
                 </div>
             </div>
         </div>
@@ -74,7 +74,21 @@
 </template>
 
 <script>
+import {coverDate} from '../../MyMixins.js'
 export default {
+    mixins: [coverDate],
+    data() {
+        return {
+            DataMain: {
+                name: "popupMain",
+                nameCourse: "",
+                organize: "",
+
+                describe: "",
+                time: "",
+            }
+        }
+    },
     methods: {
         active: function () {
             this.$refs.active.click();

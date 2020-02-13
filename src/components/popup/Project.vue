@@ -16,27 +16,27 @@
                         <div class="form-body">
                             <div class="form-group">
                                 <label for="" class="text-form1">Tên dự án <span>*</span></label>
-                                <input type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Tên dự án">
+                                <input v-model="DataMain.nameProject" type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Tên dự án">
                                 <small id="" class="form-text text-muted"></small>
                             </div>
                             <div class="form-group">
                                 <label for="" class="text-form1">Khách hàng<span>*</span></label>
-                                <input type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Tên khách hàng">
+                                <input v-model="DataMain.NameCustomer" type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Tên khách hàng">
                                 <small id="" class="form-text text-muted"></small>
                             </div>  
                             <div class="form-group">
                                 <label for="" class="text-form1">Số thành viên <span>*</span></label>
-                                <input type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Số thành viên tham gia dự án">
+                                <input v-model="DataMain.CountMember" type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Số thành viên tham gia dự án">
                                 <small id="" class="form-text text-muted"></small>
                             </div>  
                             <div class="form-group">
                                 <label for="" class="text-form1">Vị trí của bạn trong dự án<span>*</span></label>
-                                <input type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Vị trí của bạn trong dự án">
+                                <input v-model="DataMain.YourPositon" type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Vị trí của bạn trong dự án">
                                 <small id="" class="form-text text-muted"></small>
                             </div>
                             <div class="form-group">
                                 <label for="" class="text-form1">Nhiệm vụ <span>*</span></label>
-                                <input type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Nhiệm vụ của bạn trong dự án">
+                                <input v-model="DataMain.mission" type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Nhiệm vụ của bạn trong dự án">
                                 <small id="" class="form-text text-muted"></small>
                             </div>
                             <div class="form-row mt-3">
@@ -44,10 +44,10 @@
                                     <label for="" class="text-form1">Thời gian bắt đầu </label>
                                     <div class="form-row mt-2">
                                         <div class="col-6">
-                                            <input type="number" class="form-control " max="12" min="1" aria-describedby="emailHelp" placeholder="Tháng">
+                                            <input v-model="DataMain.monthStart" type="number" class="form-control " max="12" min="1" aria-describedby="emailHelp" placeholder="Tháng">
                                         </div>
                                         <div class="col-6">
-                                            <input type="number" class="form-control " max="3000" min="1" aria-describedby="emailHelp" placeholder="Năm">
+                                            <input v-model="DataMain.mouthEnd" type="number" class="form-control " max="3000" min="1" aria-describedby="emailHelp" placeholder="Năm">
                                         </div>
                                     </div>
                                 </div>
@@ -56,10 +56,10 @@
                                     <label for="">Thời gian kết thúc </label>
                                     <div class="form-row mt-2">
                                         <div class="col-6">
-                                            <input type="number" class="form-control " max="12" min="1" aria-describedby="emailHelp" placeholder="Tháng">
+                                            <input v-model="DataMain.yearStart" type="number" class="form-control " max="12" min="1" aria-describedby="emailHelp" placeholder="Tháng">
                                         </div>
                                         <div class="col-6">
-                                            <input type="number" class="form-control " max="3000" min="1" aria-describedby="emailHelp" placeholder="Năm">
+                                            <input v-model="DataMain.yearEnd" type="number" class="form-control " max="3000" min="1" aria-describedby="emailHelp" placeholder="Năm">
                                         </div>
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@
 
                             <div class="form-group textaer">
                                 <label for="" class="text-form1">Mô tả chi tiết</label>
-                                <textarea class="form-control rounded-0 detail" placeholder="Mô tả chi tiết dự án" id="exampleFormControlTextarea2" rows="3"></textarea>
+                                <textarea v-model="DataMain.describe" class="form-control rounded-0 detail" placeholder="Mô tả chi tiết dự án" id="exampleFormControlTextarea2" rows="3"></textarea>
                             </div>
 
                         </div>
@@ -77,8 +77,8 @@
                         <p> Thêm mới</p>
                     </div>
                     <div class="modal-footer  dialog-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                        <button type="button" class="btn-color">Lưu thông tin</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" ref="close">Hủy</button>
+                        <button type="button" class="btn-color" @click="commitdata">Lưu thông tin</button>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,24 @@
 </template>
 
 <script>
+import {coverDate} from '../../MyMixins.js'
 export default {
+    mixins: [coverDate],
+    data() {
+        return {
+            DataMain: {
+                name: "popupMain",
+                nameProject: "",
+                NameCustomer: "",
+                CountMember :0,
+                YourPositon:"",
+                mission :"",
+
+                describe: "",
+                time: "",
+            }
+        }
+    },
     methods: {
         active: function () {
             this.$refs.active.click();

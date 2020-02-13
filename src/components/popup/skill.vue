@@ -16,7 +16,12 @@
                         <div class="modal-body dialog-body" v-for="(item,index) in countChilds" v-bind:key="index">
                             <div class="form-body">
                                 <div class="form-group">
-                                    <label for="" class="text-form1">Kỹ năng chuyên môn <span>*</span></label>
+                                    <div class="row d-flex r1">
+                                        <label for="" class="text-form1 col-sm-11">Kỹ năng chuyên môn <span>*</span></label>
+                                        <div class="iconthungrac  col-sm-1 align-items-center d-flex">
+                                            <div class="iconBackground" @click="deleteOneRow(index)"></div>
+                                        </div>
+                                    </div>
                                     <input type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Ki nang cua ban" v-model="item.text">
                                     <small id="" class="form-text text-muted"></small>
                                 </div>
@@ -34,8 +39,8 @@
                         <p> Thêm Kỹ năng</p>
                     </div>
                     <div class="modal-footer  dialog-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                        <button type="button" class="btn-color">Lưu thông tin</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"  ref="close">Hủy</button>
+                        <button type="button" class="btn-color"  @click="commitdata">Lưu thông tin</button>
                     </div>
                 </div>
             </div>
@@ -49,6 +54,7 @@ import StarRating from 'vue-star-rating'
 export default {
     data() {
         return {
+            name:"skill",
             countChilds: [{
                 text: '',
                 rating: 0
@@ -65,6 +71,13 @@ export default {
                 text: '',
                 rating: 0
             })
+        },
+        deleteOneRow(index){
+            this.countChilds.splice(index,1);
+        },
+        commitdata(){
+            this.$emit('arraySkill',this.countChilds,this.name);
+            this.$refs.close.click()
         }
 
     },
@@ -75,6 +88,13 @@ export default {
 </script>
 
 <style scoped>
+.iconthungrac .iconBackground {
+    background-position: -192px 0px;
+    width: 16px;
+    margin-left: 16px;
+    height: 16px;
+    cursor: pointer;
+}
 .scroll {
     max-height: 57vh;
     overflow: auto;

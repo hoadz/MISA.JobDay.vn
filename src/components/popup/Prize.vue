@@ -15,12 +15,12 @@
                     <div class="form-body">
                         <div class="form-group">
                             <label for="" class="text-form1">Tên giải thưởng <span>*</span></label>
-                            <input type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Tên giải thưởng">
+                            <input v-model="DataMain.namePrize" type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Tên giải thưởng">
                             <small id="" class="form-text text-muted"></small>
                         </div>
                         <div class="form-group">
                             <label for="" class="text-form1">Tổ chức<span>*</span></label>
-                            <input type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Tổ chức">
+                            <input v-model="DataMain.organize" type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Tổ chức">
                             <small id="" class="form-text text-muted"></small>
                         </div>
                         <div class="form-row mt-3">
@@ -28,10 +28,10 @@
                                 <label for="" class="text-form1">Thời gian nhận <span>*</span></label>
                                 <div class="form-row mt-2">
                                     <div class="col-6">
-                                        <input type="number" class="form-control " max="12" min="1" aria-describedby="emailHelp" placeholder="Tháng">
+                                        <input v-model="monthStart" type="number" class="form-control " max="12" min="1" aria-describedby="emailHelp" placeholder="Tháng">
                                     </div>
                                     <div class="col-6">
-                                        <input type="number" class="form-control " max="3000" min="1" aria-describedby="emailHelp" placeholder="Năm">
+                                        <input v-model="mouthEnd" type="number" class="form-control " max="3000" min="1" aria-describedby="emailHelp" placeholder="Năm">
                                     </div>
                                 </div>
                             </div>
@@ -45,8 +45,8 @@
                     <p> Thêm mới</p>
                 </div>
                 <div class="modal-footer  dialog-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                    <button type="button" class="btn-color">Lưu thông tin</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" ref="close">Hủy</button>
+                    <button type="button" class="btn-color" @click="commitdata">Lưu thông tin</button>
                 </div>
             </div>
         </div>
@@ -55,12 +55,30 @@
 </template>
 
 <script>
+import {coverDate} from '../../MyMixins.js'
 export default {
+    mixins:[coverDate],
+    data() {
+        return {
+            DataMain: {
+                namePrize:"",       
+                organize:"",
+                
+                name :"popupMain",
+                describe:"",
+                time: "",
+            }
+        }
+    },
     methods: {
         active: function () {
             this.$refs.active.click();
         },
-
+        commitdata(){
+            this.DataMain.time="Đã nhận vào ngày " + this.monthStart + "/" + this.mouthEnd;
+            this.$emit("CreateDataPopup",this.DataMain);
+            this.$refs.close.click();
+        }
     }
 }
 </script>

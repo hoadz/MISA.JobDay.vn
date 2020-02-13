@@ -18,32 +18,32 @@
                     <div class="form-body">
                         <div class="form-group">
                             <label for="" class="text-form1">Trường học <span>*</span></label>
-                            <input type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Nhập trường học">
+                            <input v-model="DataMain.nameSchool" type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Nhập trường học">
                             <small id="" class="form-text text-muted"></small>
                         </div>
                         <div class="form-row mt-3">
                             <div class="form-group col-md-6">
                                 <label for="" class="text-form1">Chuyên ngành <span>*</span></label>
-                                <input type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Nhập trường học">
+                                <input v-model="DataMain.major" type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Nhập chuyên ngành">
                                 <small id="" class="form-text text-muted"></small>
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label for="">Bằng cấp <span>*</span></label>
 
-                                <select class="custom-select" id="inputGroupSelect01">
-                                    <option selected>Đại Học</option>
-                                    <option value="1">Cao Đẳng</option>
-                                    <option value="2">Trung Cấp</option>
-                                    <option value="3">Trung Học Phổ Thông</option>
-                                    <option value="3">No Bằng</option>
+                                <select v-model="DataMain.qualifications" class="custom-select" id="inputGroupSelect01">
+                                    <option >Đại Học</option>
+                                    <option >Cao Đẳng</option>
+                                    <option >Trung Cấp</option>
+                                    <option >Trung Học Phổ Thông</option>
+                                    <option >No Bằng</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="" class="text-form1">Thời gian <span>*</span></label>
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                <input   true-value="true" false-value="false" type="checkbox" class="custom-control-input" id="customCheck1">
                                 <label class="custom-control-label" for="customCheck1">Tôi đang học ở đây</label>
                             </div>
                         </div>
@@ -53,10 +53,10 @@
                                 <label for="" class="text-form1">Thời gian bắt đầu </label>
                                 <div class="form-row mt-2">
                                     <div class="col-6">
-                                        <input type="number" class="form-control " max="12" min="1" aria-describedby="emailHelp" placeholder="Tháng">
+                                        <input v-model="monthStart" type="number" class="form-control " max="12" min="1" aria-describedby="emailHelp" placeholder="Tháng">
                                     </div>
                                     <div class="col-6">
-                                        <input type="number" class="form-control " max="3000" min="1" aria-describedby="emailHelp" placeholder="Năm">
+                                        <input v-model="mouthEnd" type="number" class="form-control " max="3000" min="1" aria-describedby="emailHelp" placeholder="Năm">
                                     </div>
                                 </div>
                             </div>
@@ -65,10 +65,10 @@
                                 <label for="">Thời gian kết thúc </label>
                                 <div class="form-row mt-2">
                                     <div class="col-6">
-                                        <input type="number" class="form-control " max="12" min="1" aria-describedby="emailHelp" placeholder="Tháng">
+                                        <input v-model="yearStart" type="number" class="form-control " max="12" min="1" aria-describedby="emailHelp" placeholder="Tháng">
                                     </div>
                                     <div class="col-6">
-                                        <input type="number" class="form-control " max="3000" min="1" aria-describedby="emailHelp" placeholder="Năm">
+                                        <input v-model="yearEnd" type="number" class="form-control " max="3000" min="1" aria-describedby="emailHelp" placeholder="Năm">
                                     </div>
                                 </div>
                             </div>
@@ -76,14 +76,14 @@
 
                         <div class="form-group textaer">
                             <label for="" class="text-form1">Mô tả chi tiết</label>
-                            <textarea class="form-control rounded-0 detail" id="exampleFormControlTextarea2" rows="3"></textarea>
+                            <textarea v-model="DataMain.describe" class="form-control rounded-0 detail" id="exampleFormControlTextarea2" rows="3"></textarea>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="modal-footer  dialog-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                    <button type="button" class="btn-color">Lưu thông tin</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" ref="close">Hủy</button>
+                    <button type="button" class="btn-color" @click="commitdata">Lưu thông tin</button>
                 </div>
             </div>
         </div>
@@ -92,11 +92,26 @@
 </template>
 
 <script>
+import {coverDate} from '../../MyMixins.js'
 export default {
+    mixins:[coverDate],
+    data() {
+        return {
+            DataMain: {
+                name :"popupMain",
+                nameSchool: "",
+                major: "",
+                qualifications: "Đại Học",
+                // timeNow: false,
+                describe:"",
+                time: "",
+            }
+        }
+    },
     methods: {
         active: function () {
             this.$refs.active.click();
-        }
+        },
     }
 }
 </script>

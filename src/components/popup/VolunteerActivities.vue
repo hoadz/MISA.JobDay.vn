@@ -11,28 +11,28 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                 <div class="modal-content body-dialog">
+                <div class="modal-content body-dialog">
                     <div class="modal-body dialog-body">
                         <div class="form-body">
                             <div class="form-group">
                                 <label for="" class="text-form1">Tên tổ chức <span>*</span></label>
-                                <input type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="CLB Tình nguyện hiến máu Mùa Thu Hà Nội">
+                                <input v-model="DataMain.nameOrganize" type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="CLB Tình nguyện hiến máu Mùa Thu Hà Nội">
                                 <small id="" class="form-text text-muted"></small>
                             </div>
                             <div class="form-group">
                                 <label for="" class="text-form1">Vị trí tham gia<span>*</span></label>
-                                <input type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Trưởng nhóm">
+                                <input v-model="DataMain.positions"  type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Trưởng nhóm">
                                 <small id="" class="form-text text-muted"></small>
-                            </div>  
+                            </div>
                             <div class="form-row mt-3">
                                 <div class="form-group col-md-6">
                                     <label for="" class="text-form1">Thời gian bắt đầu </label>
                                     <div class="form-row mt-2">
                                         <div class="col-6">
-                                            <input type="number" class="form-control " max="12" min="1" aria-describedby="emailHelp" placeholder="Tháng">
+                                            <input v-model="monthStart" type="number" class="form-control " max="12" min="1" aria-describedby="emailHelp" placeholder="Tháng">
                                         </div>
                                         <div class="col-6">
-                                            <input type="number" class="form-control " max="3000" min="1" aria-describedby="emailHelp" placeholder="Năm">
+                                            <input  v-model="mouthEnd" type="number" class="form-control " max="3000" min="1" aria-describedby="emailHelp" placeholder="Năm">
                                         </div>
                                     </div>
                                 </div>
@@ -41,10 +41,10 @@
                                     <label for="">Thời gian kết thúc </label>
                                     <div class="form-row mt-2">
                                         <div class="col-6">
-                                            <input type="number" class="form-control " max="12" min="1" aria-describedby="emailHelp" placeholder="Tháng">
+                                            <input v-model="yearStart" type="number" class="form-control " max="12" min="1" aria-describedby="emailHelp" placeholder="Tháng">
                                         </div>
                                         <div class="col-6">
-                                            <input type="number" class="form-control " max="3000" min="1" aria-describedby="emailHelp" placeholder="Năm">
+                                            <input v-model="yearEnd" type="number" class="form-control " max="3000" min="1" aria-describedby="emailHelp" placeholder="Năm">
                                         </div>
                                     </div>
                                 </div>
@@ -52,7 +52,7 @@
 
                             <div class="form-group textaer">
                                 <label for="" class="text-form1">Mô tả chi tiết</label>
-                                <textarea class="form-control rounded-0 detail" placeholder="Đây là câu lạc bộ Sinh viên vận động hiến máu" id="exampleFormControlTextarea2" rows="3"></textarea>
+                                <textarea v-model="DataMain.describe" class="form-control rounded-0 detail" placeholder="Đây là câu lạc bộ Sinh viên vận động hiến máu" id="exampleFormControlTextarea2" rows="3"></textarea>
                             </div>
 
                         </div>
@@ -62,8 +62,8 @@
                         <p> Thêm hoạt động xã hội và tình nguyện</p>
                     </div>
                     <div class="modal-footer  dialog-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                        <button type="button" class="btn-color">Lưu thông tin</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" ref="close">Hủy</button>
+                        <button type="button" class="btn-color" @click="commitdata">Lưu thông tin</button>
                     </div>
                 </div>
             </div>
@@ -73,7 +73,24 @@
 </template>
 
 <script>
+import {
+    coverDate
+} from '../../MyMixins.js'
+
 export default {
+    mixins: [coverDate],
+    data() {
+        return {
+            DataMain: {
+                nameOrganize: "",
+                positions: "",
+
+                name: "popupMain",
+                describe: "",
+                time: "",
+            }
+        }
+    },
     methods: {
         active: function () {
             this.$refs.active.click();
@@ -91,6 +108,7 @@ export default {
 .modal-body.dialog-body span {
     color: #ff5969;
 }
+
 .item-icon.iconBackground {
     width: 24px;
     margin-right: 6px;
@@ -107,6 +125,7 @@ export default {
 .twe-itemExp:hover p {
     color: #FF5969 !important;
 }
+
 .twe-itemExp {
     margin: 24px;
     margin-top: 0;
@@ -121,6 +140,7 @@ export default {
     color: #212121;
     margin: 0;
 }
+
 .form-group.textaer {
     margin-bottom: 0;
 }

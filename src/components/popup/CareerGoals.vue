@@ -42,9 +42,9 @@ export default {
         return {
 
             editorData: "",
-            dataPopup:{
-                name : "CareerGoals",
-                DataCareer : ""
+            DataMain: {
+                name: "CareerGoals",
+                DataCareer: ""
             },
             editor: ClassicEditor,
             editorConfig: {
@@ -60,21 +60,21 @@ export default {
         active: function () {
             this.$refs.active.click();
         },
-        commitData(){
-            this.dataPopup.DataCareer=this.editorData;
-             //console.log(this.dataPopup.DataCareer);
-           this.$emit('CreateCareerGoals',this.dataPopup);
-           //console.log(this.dataPopup);
-           this.editorData="";
-           this.$refs.close.click();
+        commitData() {
+            this.DataMain.DataCareer = this.editorData;
+            //console.log(this.dataPopup.DataCareer);
+            this.$emit('CreateDataPopup', this.DataMain);
+            //console.log(this.dataPopup);
+            this.$refs.close.click();
+        },
+        resetData() {
+            this.editorData = "";
         }
     }
 }
 </script>
 
 <style scoped>
-
-
 .modal-footer.dialog-footer {
     padding-top: 0;
     border-top: none;
@@ -131,9 +131,11 @@ button.btn.btn-primary {
     padding: 24px;
     padding-top: 10px;
 }
-.btn-color{
+
+.btn-color {
     margin-right: 0;
 }
+
 /* .body-dialog {
     background-color: #ffffff;
     border-radius: 4px;

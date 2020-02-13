@@ -1,34 +1,58 @@
 <template>
-    <div class="career-goals">
-        <div class="row creer-goals-text">
-            <div class="icon-creer-goals col-sm-1 ">
-                <slot></slot>
-            </div>
-            <p class="col-sm-11">{{item.title}}</p>
+<div class="career-goals">
+    <div class="row creer-goals-text">
+        <div class="icon-creer-goals col-sm-1 ">
+            <slot></slot>
         </div>
-        <div v-bind:class="{autoheight:stateAdd}" class="row new-item d-flex flex-row align-items-center justify-content-center ">
-            <div 
-            class="twe-item d-flex flex-row align-items-center justify-content-center" 
-            v-on:click="changePupop" 
-            v-bind:class="{closeAdd:stateAdd}"
-            >
-                <div class="item-icon iconBackground "></div>
-                <p> Thêm mới</p>
-            </div>
-            <div  
-            class="textCareerGoals" 
-            v-html="Data.DataCareer"  
-            v-if="Data.name=='CareerGoals'&&this.stateAdd==true">
-            </div>
-        </div>
-        <div class="popup">
-            <component 
-            v-bind:is="item.name" 
-            ref="activePopup"
-            @CreateCareerGoals="CreateCareerGoals"
-            ></component>
+        <p class="col-sm-10">{{item.title}}</p>
+        <div class="col-sm-1">
+            <div class="iconBackground iconAdd" v-bind:class="{closeAdd:!stateAdd}"></div>
         </div>
     </div>
+    <div class="row addRemove " v-bind:class="{closeAdd:!stateAdd}">
+        <div class="col-sm-11"></div>
+        <div class="col-sm-1 d-flex">
+            <div class="icon1 iconBackground" @click="changePupop()"></div>
+            <div class="icon2 iconBackground" @click="deleteData"></div>
+        </div>
+
+    </div>
+    <div v-bind:class="{autoheight:stateAdd}" class="row new-item d-flex flex-row align-items-center justify-content-center ">
+        <div class="twe-item d-flex flex-row align-items-center justify-content-center" v-on:click="changePupop" v-bind:class="{closeAdd:stateAdd}">
+            <div class="item-icon iconBackground "></div>
+            <p> Thêm mới</p>
+        </div>
+        <div class="row a">
+            <div class="row aa" v-if="this.nameSkill == 'skill'">
+                <!-- <div class="col-sm-6" v-for="(i)">
+
+                </div> -->
+            </div>
+            <!-- skill o tren va phan con lai -->
+            <div class="col-12 c">
+                <div class="textCareerGoals" v-html="Data.DataCareer" v-if="Data.name=='CareerGoals'&&this.stateAdd==true"></div>
+                <div class="textCareerGoals1" v-if="Data.name=='popupMain'&&this.stateAdd==true">
+                    <p v-for="(value, name) in Data" v-bind:key="name"  >
+                        <template v-if="value != 'popupMain'">
+                            {{value}}
+                            <!-- <template v-if="value == true">
+                                Hiện đang học ở đây 
+                            </template>
+                              <template v-else>
+                                {{value}}
+                            </template> -->
+                        </template>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="popup">
+        <component v-bind:is="item.name" ref="activePopup" v-on:CreateDataPopup="CreateDataPopup" v-on:arraySkill="commitdata"></component>
+    </div>
+</div>
 </template>
 
 <script>
@@ -44,14 +68,16 @@ export default {
     data() {
         return {
             stateAdd: false,
+            nameSkill:"",
             Data: Object,
-            widthPress :53
+            // widthPress: 53
+            dataArray:[]
         }
     },
     props: {
-        item:{
-            type:Object,
-            default :() =>{}
+        item: {
+            type: Object,
+            default: () => {}
         }
     },
     components: {
@@ -65,33 +91,112 @@ export default {
         skill
     },
     methods: {
-      changePupop(){
-          this.$refs.activePopup.active();
-      } ,
-      CreateCareerGoals(data){
-           this.Data=data;
-        //    console.log(this.Data);
-            this.stateAdd =true;
-      } 
+        // thay doi dialog phu hop 
+        changePupop() {
+            this.$refs.activePopup.active();
+        },
+        // nhan data tu dialog va biuld len 
+        CreateDataPopup(data) {
+            this.Data = data;
+            console.log(this.converArray(data));
+            this.stateAdd = true;
+        },
+        // xoa data khi kich vao nut xoa
+        deleteData(){
+
+            this.Data="";
+            this.stateAdd=false;
+            this.$refs.activePopup.resetData();
+        },
+        converArray(){
+            var arry =Object.values(this.Data);
+            arry.shift();
+            return arry;
+        },
+        commitdata(data,name){
+            this.dataArray=data;
+            this.nameSkill=name;
+            //console.log(this.dataArray,this.nameSkill);
+        }
     },
 }
 </script>
 
 <style scoped>
-.textCareerGoals{
-     width: 100%;
+.textCareerGoals1 {
+    width: 100%;
     height: 100%;
-    padding: 16px;
+    padding-left: 12px;
 }
+
+.textCareerGoals1 p {
+    padding-bottom: 5px;
+}
+.row.a {
+    width: 100%;
+    padding-top: 16px;
+}
+
+.col-sm-1.b {
+    padding: 0;
+}
+
+.col-11.c {
+    padding-left: 0;
+}
+.row.addRemove {
+    width: 100%;
+    height: 20px;
+    margin: 0;
+}
+
+.icon1.iconBackground {
+    width: 16px;
+    height: 16px;
+    background-position: -64px 0;
+    cursor: pointer;
+}
+
+.icon2.iconBackground {
+    background-position: -192px 0px;
+    width: 16px;
+    margin-left: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.row.addRemove .col-sm-1 {
+    padding: 0;
+}
+
+.iconBackground.iconAdd {
+    background-color: #ffebed;
+    border-radius: 50%;
+    width: 23px;
+    height: 23px;
+    overflow: hidden;
+    background-position: -49px -33px;
+    cursor: pointer;
+}
+
+.textCareerGoals {
+    width: 100%;
+    height: 100%;
+    /* padding: 16px; */
+}
+
 .textCareerGoals li {
     margin-top: 5px;
 }
-.autoheight{
-    height: auto !important ;
+
+.autoheight {
+    height: auto !important;
 }
-.closeAdd{
+
+.closeAdd {
     display: none !important;
 }
+
 .twe-item:hover {
     color: #FF5969 !important;
     -webkit-box-shadow: inset 0 2px 10px rgba(0, 0, 0, .1);
@@ -102,6 +207,7 @@ export default {
 .twe-item:hover p {
     color: #FF5969 !important;
 }
+
 .twe-item {
     width: calc(100% - 80px);
     border-radius: 3.5px;
@@ -112,7 +218,7 @@ export default {
 
 .row.new-item {
     height: 80px;
-        margin: 0;
+    margin: 0;
 }
 
 .icon-creer-goals.col-sm-1 {

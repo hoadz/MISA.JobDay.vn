@@ -15,12 +15,12 @@
                     <div class="form-body">
                         <div class="form-group">
                             <label for="" class="text-form1">Công ty <span>*</span></label>
-                            <input type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Nhập công ty">
+                            <input v-model="DataMain.company" type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Nhập công ty">
                             <small id="" class="form-text text-muted"></small>
                         </div>
                         <div class="form-group">
                             <label for="" class="text-form1">Chức vụ<span>*</span></label>
-                            <input type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Nhân viên văn phòng">
+                            <input v-model="DataMain.position" type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Nhân viên văn phòng">
                             <small id="" class="form-text text-muted"></small>
                         </div>
                         <div class="form-group">
@@ -35,10 +35,10 @@
                                 <label for="" class="text-form1">Thời gian bắt đầu </label>
                                 <div class="form-row mt-2">
                                     <div class="col-6">
-                                        <input type="number" class="form-control " max="12" min="1" aria-describedby="emailHelp" placeholder="Tháng">
+                                        <input v-model="monthStart" type="number" class="form-control " max="12" min="1" aria-describedby="emailHelp" placeholder="Tháng">
                                     </div>
                                     <div class="col-6">
-                                        <input type="number" class="form-control " max="3000" min="1" aria-describedby="emailHelp" placeholder="Năm">
+                                        <input v-model="mouthEnd"  type="number" class="form-control " max="3000" min="1" aria-describedby="emailHelp" placeholder="Năm">
                                     </div>
                                 </div>
                             </div>
@@ -47,10 +47,10 @@
                                 <label for="">Thời gian kết thúc </label>
                                 <div class="form-row mt-2">
                                     <div class="col-6">
-                                        <input type="number" class="form-control " max="12" min="1" aria-describedby="emailHelp" placeholder="Tháng">
+                                        <input v-model="yearStart" type="number" class="form-control " max="12" min="1" aria-describedby="emailHelp" placeholder="Tháng">
                                     </div>
                                     <div class="col-6">
-                                        <input type="number" class="form-control " max="3000" min="1" aria-describedby="emailHelp" placeholder="Năm">
+                                        <input v-model="yearEnd" type="number" class="form-control " max="3000" min="1" aria-describedby="emailHelp" placeholder="Năm">
                                     </div>
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
 
                         <div class="form-group textaer">
                             <label for="" class="text-form1">Mô tả công việc</label>
-                            <textarea class="form-control rounded-0 detail" id="exampleFormControlTextarea2" rows="3"></textarea>
+                            <textarea v-model="DataMain.describe" class="form-control rounded-0 detail" id="exampleFormControlTextarea2" rows="3"></textarea>
                         </div>
 
                     </div>
@@ -71,8 +71,8 @@
 
                 </div> -->
                 <div class="modal-footer  dialog-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                    <button type="button" class="btn-color">Lưu thông tin</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"  ref="close">Hủy</button>
+                    <button type="button" class="btn-color" @click="commitdata">Lưu thông tin</button>
                 </div>
             </div>
         </div>
@@ -81,7 +81,21 @@
 </template>
 
 <script>
+import {coverDate} from '../../MyMixins.js'
 export default {
+    mixins:[coverDate],
+    data() {
+        return {
+            DataMain: {
+                company:"",       
+                position:"",
+                
+                name :"popupMain",
+                describe:"",
+                time: "",
+            }
+        }
+    },
     methods: {
         active: function () {
             this.$refs.active.click();
