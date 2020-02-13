@@ -23,15 +23,16 @@
             <p> Thêm mới</p>
         </div>
         <div class="row a">
-            <div class="row aa" v-if="this.nameSkill == 'skill'">
-                <!-- <div class="col-sm-6" v-for="(i)">
-
-                </div> -->
+            <div class="row aa" v-if="this.nameSkill == 'skill' && stateAdd" >
+                <div class="col-sm-6 aaa" v-for="(item, index) in dataArray" v-bind:key="index">    
+                    <p>{{item.text}}</p>
+                    <star-rating :read-only=true v-model="item.rating" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" :increment="0.5" :max-rating=5 :star-size=30 :padding=10 active-color="#ff5969"></star-rating>
+                </div>
             </div>
             <!-- skill o tren va phan con lai -->
             <div class="col-12 c">
                 <div class="textCareerGoals" v-html="Data.DataCareer" v-if="Data.name=='CareerGoals'&&this.stateAdd==true"></div>
-                <div class="textCareerGoals1" v-if="Data.name=='popupMain'&&this.stateAdd==true">
+                <div class="textCareerGoals1" v-if="Data.name=='popupMain'&&this.stateAdd">
                     <p v-for="(value, name) in Data" v-bind:key="name"  >
                         <template v-if="value != 'popupMain'">
                             {{value}}
@@ -64,6 +65,7 @@ import Course from '../popup/Course.vue'
 import Project from '../popup/Project.vue'
 import VolunteerActivities from '../popup/VolunteerActivities.vue'
 import skill from '../popup/skill.vue'
+import StarRating from 'vue-star-rating'
 export default {
     data() {
         return {
@@ -81,6 +83,7 @@ export default {
         }
     },
     components: {
+        StarRating,
         CareerGoals,
         Education,
         ExpJob,
@@ -113,16 +116,22 @@ export default {
             arry.shift();
             return arry;
         },
+        // ham nhan mang object va biuld o bang skill 
         commitdata(data,name){
+            this.stateAdd = true;
             this.dataArray=data;
             this.nameSkill=name;
-            //console.log(this.dataArray,this.nameSkill);
+            console.log(this.dataArray,this.nameSkill);
         }
     },
 }
 </script>
 
 <style scoped>
+.row.aa {
+    width: 100%;
+}
+
 .textCareerGoals1 {
     width: 100%;
     height: 100%;
