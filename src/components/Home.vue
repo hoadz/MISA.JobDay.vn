@@ -14,7 +14,7 @@
 <script>
 import headerHome from './Layout/header.vue'
 import menuHome from './Layout/menu.vue'
-import footerHome from './Layout/footer.vue';
+import footerHome from './Layout/footer.vue'
 
 import ContentHome from './records management/ContentHome.vue'
 export default {
@@ -28,6 +28,47 @@ export default {
 }
 </script>
 <style >
+@font-face {
+    font-family: Google-san;
+    src: url(/GoogleSans-Bold.ttf) format('woff');
+    font-weight:700;
+    font-style:italic;
+}
+@font-face {
+    font-family: Google-san;
+    src: url(../FontGoogleSan/GoogleSans-BoldItalic.ttf) format('woff');
+    font-weight: 700;
+    font-style:italic;
+}
+@font-face {
+    font-family: Google-san;
+    src: url(../FontGoogleSan/GoogleSans-Italic.ttf) format('woff');
+    font-weight: 500;
+    font-style: italic;
+}
+@font-face {
+    font-family: Google-san;
+    src: url(../FontGoogleSan/GoogleSans-Medium.ttf) format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: Google-san;
+    src: url(../FontGoogleSan/GoogleSans-MediumItalic.ttf) format('woff');
+    font-weight: 500;
+    font-style: italic;
+}
+@font-face {
+    font-family: Google-san;
+    src: url(../FontGoogleSan/GoogleSans-Regular.ttf) format('woff');
+    font-weight: 200;
+    font-style: normal;
+}
+
+
+* {
+    font-family: Google-san, sans-serif !important;
+}
 *{
     font-family: 'Open Sans', sans-serif ;
 }

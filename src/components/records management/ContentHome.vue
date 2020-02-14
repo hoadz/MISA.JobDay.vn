@@ -2,7 +2,8 @@
 <div>
     <div class="row main">
         <div class=" col-8 left containerBanner">
-           <content-left></content-left>
+           <!-- <content-left></content-left> -->
+        <router-view></router-view>
         </div>
         <div class="col-4 right">
             <content-right></content-right>
@@ -13,8 +14,9 @@
 </template>
 
 <script>
+
 // import popup from '../popup/dialogAvata.vue'
-import contentLeft from './contentLeft.vue'
+// import contentLeft from './contentLeft.vue'
 import contentRight from './ContentRight.vue'
 export default {
 
@@ -25,7 +27,7 @@ export default {
     },
     components: {
         contentRight,
-        contentLeft
+        // contentLeft
 
 
     }

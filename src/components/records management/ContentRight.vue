@@ -12,11 +12,15 @@
                     <!-- <div class="icon-two">
                         <div class="icon-one"></div>
                     </div> -->
-                    <toggle-button color="#ff5969" :width="46" :height="26" />
+                    <toggle-button v-model="checkButton" :speed=300 color="#ff5969" :width="46" :height="26" />
                 </div>
-                <div class="col-sm-10 text-thongbao">
-                    <p class="text-status">Trạng thái tìm việc đang tắt</p>
+                <div class="col-sm-10 text-thongbao" v-if="checkButton == false">
+                    <p class="text-status">Trạng thái tìm việc đang tắt </p>
                     <p class="text-status2">CV của bạn không hiển thị công khai, nhà tuyển dụng không thể tìm thấy CV của bạn, nhưng bạn có thể đính CV khi nộp đơn cho một việc làm.</p>
+                </div>
+                <div class="col-sm-10 text-thongbaotrue" v-else>
+                    <p class="text-status">Trạng thái tìm việc đang bật </p>
+                    <p class="text-status2">CV của bạn hiển thị công khai, nhà tuyển dụng sẽ tìm thấy CV của bạn, họ có thể gửi gmail hoặc thông tin được cung cấp bởi thông tin cá nhân của bạn </p>
                 </div>
             </div>
         </div>
@@ -71,6 +75,11 @@
 <script>
 import { ToggleButton } from 'vue-js-toggle-button'
 export default {
+    data() {
+        return {
+            checkButton: false
+        }
+    },
     components:{
         ToggleButton
     }
@@ -78,6 +87,13 @@ export default {
 </script>
 
 <style scoped>
+.text-thongbaotrue .text-status {
+    color: #ff5969 !important;
+}
+
+.text-thongbaotrue .text-status2 {
+    color: #212121 !important;
+}
 .e3-1:hover p {
     color: #FF5969 !important;
 }

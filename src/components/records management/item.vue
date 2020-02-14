@@ -23,25 +23,21 @@
             <p> Thêm mới</p>
         </div>
         <div class="row a">
+            <!-- code phan Skill  -->
             <div class="row aa" v-if="this.nameSkill == 'skill' && stateAdd" >
                 <div class="col-sm-6 aaa" v-for="(item, index) in dataArray" v-bind:key="index">    
                     <p>{{item.text}}</p>
                     <star-rating :show-rating=false :read-only=true v-model="item.rating" :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" :increment="0.5" :max-rating=5 :star-size=30 :padding=10 active-color="#ff5969"></star-rating>
                 </div>
             </div>
-            <!-- skill o tren va phan con lai -->
+
+            <!--  phan con lai -->
             <div class="col-12 c">
-                <div class="textCareerGoals" v-html="Data.DataCareer" v-if="Data.name=='CareerGoals'&&this.stateAdd==true"></div>
+                <div class="textCareerGoals" v-html="Data.DataCareer" v-if="Data.name=='CareerGoals' && this.stateAdd==true"></div>
                 <div class="textCareerGoals1" v-if="Data.name=='popupMain'&&this.stateAdd">
                     <p v-for="(value, name) in Data" v-bind:key="name"  >
                         <template v-if="value != 'popupMain'">
                             {{value}}
-                            <!-- <template v-if="value == true">
-                                Hiện đang học ở đây 
-                            </template>
-                              <template v-else>
-                                {{value}}
-                            </template> -->
                         </template>
                     </p>
                 </div>
@@ -72,7 +68,6 @@ export default {
             stateAdd: false,
             nameSkill:"",
             Data: Object,
-            // widthPress: 53
             dataArray:[]
         }
     },
@@ -250,7 +245,7 @@ export default {
 .new-item p {
     font-size: 17px;
     color: #212121;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
 }
 
 .icon-creer-goals.col-sm-1 {

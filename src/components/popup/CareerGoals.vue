@@ -20,6 +20,7 @@
                         <p class="text-form1">Mô tả mục tiêu nghề nghiệp <span>*</span></p>
                         <div class="ckeditor">
                             <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
+                           
                         </div>
                     </div>
                 </div>

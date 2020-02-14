@@ -1,14 +1,16 @@
 <template>
-    <Home></Home>
+<div>
+      <home></home>
+</div>
+    
 </template>
 
 <script>
-
-import Home from './components/Home'
+import home from './components/Home'
 export default {
-    components: {
-        Home,
-    },
+    components:{
+        home
+    }
 }
 </script>
 
