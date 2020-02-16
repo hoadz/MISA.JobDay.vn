@@ -4,7 +4,7 @@
     <div class="content-banner">
         <div class="row width-row-banner p1">
             <div class="d-flex flex-row banner-top mt-3">
-                <div class="avt mr-auto" v-on:click="activeDialog"></div>
+                <div class="avt mr-auto"></div>
                 <div class="banner-right d-flex flex-row">
                     <div class="dropdown mr-3">
                         <a v-on:click.prevent class="  dropdown-banner dropdown-toggle my-auto" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -43,11 +43,51 @@
             <p>Nguyễn Thị Như</p>
         </div>
         <div class="row width-row-banner p3 justify-content-center align-items-center">
-            <div class="div want-info row justify-content-center align-items-center">
+            <div v-on:click="activeDialog" class="div want-info row justify-content-center align-items-center">
                 <p>Bạn cần hoàn thiện thông tin cá nhân để có thể hiển thị đầy đủ</p>
-
             </div>
         </div>
+        
+        <!-- thong tin ca nhan cua user -->
+        <!-- <div class="row inforUser">
+            <div class="col-4">
+                <div class="icon-base icon-infoUser iconBackground"></div>
+                 
+                <p class="t1">Vị trí công việc</p>
+                <p class="t2">{{infoUser.jobPosition}}</p>
+            </div>
+            <div class="col-4">
+                 <div class="icon-base icon-infoUser1 iconBackground"></div>
+                 
+                <p class="t1">Email</p>
+                <p class="t2">{{infoUser.email}}</p>
+            </div>
+            <div class="col-4">
+                 <div class="icon-base icon-infoUser2 iconBackground"></div>
+                 
+                <p class="t1">Số điện thoại</p>
+                <p class="t2">{{infoUser.phoneNumber}}</p>
+            </div>
+
+             <div class="col-4">
+                <div class="icon-base icon-infoUser3 iconBackground"></div>
+                 
+                <p class="t1">Địa chỉ</p>
+                <p class="t2">{{infoUser.jobPosition}}</p>
+            </div>
+            <div class="col-4">
+                 <div class="icon-base icon-infoUser4 iconBackground"></div>
+                 
+                <p class="t1">Sinh nhật</p>
+                <p class="t2">{{infoUser.email}}</p>
+            </div>
+            <div class="col-4">
+                 <div class="icon-base icon-infoUser5 iconBackground"></div>
+                 
+                <p class="t1">Giới tính</p>
+                <p class="t2">{{infoUser.phoneNumber}}</p>
+            </div>
+        </div> -->
 
         <!-- muc do hoan thien ho so  -->
         <div class="filesuccess width-row-banner">
@@ -101,6 +141,8 @@
 </template>
 
 <script>
+
+
 import popup from '../popup/dialogAvata.vue'
 import item from './item.vue';
 export default {
@@ -139,7 +181,15 @@ export default {
                     title: "Hoạt động xã hội và tình nguyện",
                     name: "VolunteerActivities"
                 },
-            ]
+            ],
+            infoUser: {
+                jobPosition: "Nhân viên thiết kế đồ họa",
+                email :"Thanhha@gmail.com",
+                phoneNumber :"0968 700 888",
+                adress:"Hoàn Kiếm - Hà Nội",
+                birthday :"04/09/1993",
+                sex:"Nữ"
+            }
         }
     },
     methods: {
@@ -157,6 +207,56 @@ export default {
 </script>
 
 <style scoped>
+.mx-datepicker{
+        position: relative;
+    display: inline-block;
+    width: 100%;
+}
+.inforUser .col-4 {
+    padding-left: 24px !important;
+    margin-top: 20px;
+}
+
+p.t1 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #212121;
+}
+
+p.t2 {
+    font-size: 15px;
+    color: #212121;
+}
+.row.inforUser {
+    margin: 0;
+    background-color: #f9f9f9;
+}
+.icon-base{
+    width: 24px;
+    height: 24px;
+    margin-bottom: 10px;
+}
+.icon-infoUser {
+    background-position: -264px -56px;
+}
+.icon-infoUser1 {
+    background-position: -408px -56px;
+}
+.icon-infoUser2 {
+    background-position: -432px -56px;
+}
+.icon-infoUser3 {
+    background-position: -456px -56px;
+}
+.icon-infoUser4 {
+    background-position: -480px -56px;
+}
+.icon-infoUser5 {
+    background-position: -504px -56px;
+}
+
+
+
 .dropdown-banner:hover {
     box-shadow: inset 0 2px 10px rgba(0, 0, 0, .1);
     background-color: #FB727F !important;
@@ -195,9 +295,22 @@ p.text-download {
 
 .download-sum,
 .share {
-    background-color: #ffebed;
+    /* background-color: #ffebed; */
     width: 158px;
     height: 40px;
+    border: thin dashed #fff;
+}
+
+.div.want-info:hover {
+    border-color: #ff5969;
+}
+
+.download-sum:hover {
+    border-color: #ff5969 !important;
+}
+
+.share:hover {
+    border-color: #ff5969 !important;
 }
 
 .icon1 .icon-three {
@@ -220,6 +333,7 @@ p.text-download {
     width: calc(100% - 40px);
     border-radius: 3.5px;
     border: 1px dashed #e0e8ec;
+    cursor: pointer;
     height: 39px;
 }
 
@@ -424,10 +538,14 @@ p.text2 {
 
 .row.width-row-banner.p3 p {
     font-size: 15px;
-    color: #ff5969;
+    color: #9e9e9e;
     width: 100%;
     margin: 0;
     display: inline-block;
+}
+
+.want-info:hover p {
+    color: #ff5969 !important;
 }
 
 .row.width-row-banner.p1 {

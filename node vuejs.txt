@@ -90,16 +90,80 @@ Enter/Leave & List Transitions :
 <transitions> chứa 1 element </transitions> dùng để css xét chuyển dộng cho dom kết hợp vs v-if hoặc v-show
 muốn có hiệu ứng từ đầu  thêm appear vào transition đó : Section 14 | Video 05
 có 6 trạng thái https://vi.vuejs.org/v2/guide/transitions.html#Cac-class-transition
+
 sử dụng thêm thử viện animate.css có sẵn cho phép làm hiệu ứng  : https://vi.vuejs.org/v2/guide/transitions.html#Class-tuy-bien-cho-transition
 dùng :name ... để bind dữ liệu 2 chiều vào   
-
+-----------------------------------------
 	Vue Router : import thu vien router vao :npm install vue-router
  tài liệu ở https://router.vuejs.org/
  dùng để điều hướng trang web nhớ thêm  <router-view/> vào bên app.vue 
+
+dùng this.$router.push("đường đẫn")	hoặc là Vue.router section 16 bài 6
+
+Truyền thêm tham số cho đường link	
+{path:'/home1/:parametter/:parametter2',name:'home-1',component:home1}
+dùng this.$router.params."parametter" để lấy ra giá trị {video section 16 v8 }	
+
+khi dùng truyền biến thì parametter nó không cập nhập cho nên phải dùng ((chú ý quan trọng và nó ở video :Section 16 | Video 09 ))
+watch để nhận thay đổi 
+cách viết 
+'$router'(to,from){
+	nhận và xử lí dữ liệu
+	this.id =to.params.id
+}
 	
-	
-	
-	
+router con :Section 16 | Video 10
+mặc định đã có user rồi 
+{path:'/user',name:'homepage', component:Home,children[
+	{path:'',name:'userid', component:userID},
+	{path:':id',name:'userid', component:userID},
+	{path:':deleteid',name:'homepage', component:},
+]}
+
+dùng multi-router để chuyển hướng web  : Section 16 | Video 15 
+<router-view name ="name-router"/>
+ở trong router.js :
+
+ {path:'/',name:'homepage', components:{
+	default : name-component,
+	'name-router' : name-component
+ }},
+
+điều hướng theo dữ liệu mình muốn  :Section 17 | Video 12 
+<router-link v-bind:to="{name:'name-router',params:{id: dữ liệu chuyền vào}}" class="nav-item" tag="li" active-class="active1" exact>
+</router-link>	
+
+chuyền và sử dụng query 
+<router-link v-bind:to="{name:'name-router',params:{id: dữ liệu chuyền vào},query:{locate:'vi',brower:'chorme'} }" >
+</router-link>
+sử dụng query :$router.query.brower 
+
+
+ dùng cách hook của router :https://router.vuejs.org/guide/advanced/navigation-guards.html
+ cái này quan trọng nên học khi cần 
+ 
+ Section 16 | Video 23 |  tối ưu hóa với lazy load  là khi nào cần thì mới gọi chứ k phải vào cái load hết
+ 
+ redirect trang web : Section 16 | Video 16
+ dùng để chuyển hướng trang web sau đấy thực hiện 1 công việc gì đó và trả lại trang cũ 
+ {path:'/redirect',redirect:{name:'Home'}},
+ 
+ video xử lí lỗi 404 redirect về 404 khi k tìm được trang Section 16 | Video 17
+ 
+ hash fragments : dùng để cuộn con trỏ chuột theo ý muốn ở trong 1 trang web  Section 16 | Video 20
+ https://router.vuejs.org/guide/advanced/scroll-behavior.html#async-scrolling
+ khai báo thuộc tính hash:"name-hash" nghĩa thêm nó vào cái router và kiếm tra xem có nó k nếu có thì chạy xuống theo hash	
+scrollBehavior (to, from, savedPosition) {
+  if (savedPosition) {
+    return savedPosition
+  } else if (to.hash) {
+    return {
+      selector: to.hash
+      // , offset: { x: 0, y: 10 }
+    }
+  }
+} 
+  
 routers.js	
 // routes component
 import Home from './components/Home.vue'
@@ -107,6 +171,7 @@ import home1 from './components/test/Home-1.vue'
 export const routes = [
     {path:'/',name:'homepage', component:Home},
     {path:'/home1',name:'home-1',component:home1}
+	
 ]
 
 main.js

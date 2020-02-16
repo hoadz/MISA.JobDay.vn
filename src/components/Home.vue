@@ -3,8 +3,9 @@
         <div class="containerHome">
             <header-home></header-home>   
         <div class="content">
-            <menu-home></menu-home>
-            <ContentHome></ContentHome>
+            <!-- <menu-home></menu-home> -->
+            <!-- <ContentHome></ContentHome> -->
+            <router-view></router-view>
         </div>
         <footerHome></footerHome>
     </div>
@@ -13,15 +14,15 @@
 </template>
 <script>
 import headerHome from './Layout/header.vue'
-import menuHome from './Layout/menu.vue'
+// import menuHome from './Layout/menu.vue'
 import footerHome from './Layout/footer.vue'
 
-import ContentHome from './records management/ContentHome.vue'
+// import ContentHome from './records management/ContentHome.vue'
 export default {
     components:{
         headerHome,
-        menuHome,
-        ContentHome,
+        // menuHome,
+        // ContentHome,
         footerHome
 
     }

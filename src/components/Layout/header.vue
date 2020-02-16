@@ -3,7 +3,7 @@
     <header class="header">
         <div class="content">
             <nav class="navbar navbar-expand-md navbar-light col-md-12 col-12">
-            <div class="navbar-brand iconBackground logo-header" ></div>
+            <div class="navbar-brand iconBackground logo-header" v-on:click="BackHome"></div>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto ">
                     <li class="nav-item mr-3 ">
@@ -33,7 +33,11 @@
 <script>
 export default {
     name: 'header',
-
+    methods: {
+        BackHome() {
+            this.$router.push("/");
+        }
+    },
 }
 </script>
 

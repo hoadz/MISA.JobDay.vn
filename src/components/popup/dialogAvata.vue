@@ -15,8 +15,8 @@
                     </button>
                 </div>
                 <div class="modal-body dialog-body">
-                    <div class="row cover-image">
-                        <div class="update-cover-image d-flex justify-content-center align-items-center ">
+                    <div class="row cover-image" v-bind:style="{backgroundImage: 'url('+this.imageData+')'}">
+                        <div @click="$refs.inputCoverImg.click()" class="update-cover-image d-flex justify-content-center align-items-center ">
                             <div class="icon-update iconBackground"></div>
                             <div class="text-update">
                                 <p>Cập nhật ảnh bìa</p>
@@ -49,8 +49,9 @@
                         </div>
                         <div class="form-group mt-3">
                             <label for="" class="text-form1">Ngày sinh <span>*</span></label>
-                            <input type="email" class="form-control text-form2" aria-describedby="emailHelp" placeholder="Ngày sinh của bạn">
-                            <small id="" class="form-text text-muted"></small>
+                            <!-- <input type="email" class="form-control text-form2" aria-describedby="emailHelp" placeholder="Ngày sinh của bạn"> -->
+                            <date-picker   format="DD-MM-YYYY" ></date-picker>
+                            <small  id="" class="form-text text-muted"></small>
                         </div>
                         <div class="form-row mt-3">
                             <div class="form-group col-md-6">
@@ -103,20 +104,60 @@
             </div>
         </div>
     </div>
+    <input type="file" style="display:none" ref="inputCoverImg" accept="image/*" @change="uploadCoverImg">
 </div>
 </template>
 
 <script>
+import DatePicker from 'vue2-datepicker'
+import 'vue2-datepicker/index.css';
 export default {
+    data() {
+        return {
+            imageData:'',
+            infoUser: {
+                jobPosition: "",
+                email :"",
+                phoneNumber :"",
+                adress:"",
+                birthday :"",
+                sex:""
+            }
+        }
+    },
     methods: {
         clickShowInfoAvt: function () {
             this.$refs.activeClick.click();
+        },
+        uploadCoverImg(e){
+            let file =e.target.files[0];
+            this.imageData= URL.createObjectURL(file);
+            // Reference to the DOM input element
+            // var input = event.target;
+
+            // var reader = new FileReader();
+
+            // reader.onload = (e) => {
+
+            //     this.imageData = e.target.result;
+            // }
+
+            // reader.readAsDataURL(input.files[0]);
+            // console.log('tag', this.imageData);
         }
-    }
+    },
+    components: {
+        DatePicker,
+    },
 }
 </script>
 
 <style scoped>
+.mx-datepicker{
+        position: relative;
+    display: inline-block;
+    width: 100%;
+}
 .modal-dialog.dialog-all {
     margin: 0;
     width: 100%;
@@ -147,6 +188,7 @@ button.btn-color:hover {
 label.text-form1 {
     font-size: 15px;
     font-weight: 500;
+    width: 100%;
     color: #212121;
 }
 

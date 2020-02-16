@@ -2,22 +2,21 @@
 <nav class="navbar navbar-expand-lg navbar-light  menu">
     <div class="collapse navbar-collapse setmargin" id="navbarNav">
         <ul class="navbar-nav ul">
-            <router-link to="/" class="nav-item" tag="li" active-class="active1" exact>
+            <router-link to="/profile" class="nav-item" tag="li" active-class="active1" exact>
                 Quản lý hồ sơ
             </router-link>
-            <router-link to="/favoritejob" class="nav-item" active-class="active1" tag="li">
+            <router-link :to="{name:'favoriteJob'}" class="nav-item" active-class="active1" tag="li" exact>
                 Việc làm yêu thích
             </router-link>
-
-            <li class="nav-item">
-                <a class="nav-link" href="#">Việc làm đã lưu</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Việc làm đã ứng tuyển </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="#">Thông báo việc làm </a>
-            </li>
+            <router-link to="/profile/saveJob" class="nav-item" active-class="active1" tag="li" exact>
+                Việc làm đã lưu
+            </router-link>
+             <router-link :to="{name:'JobApplied'}" class="nav-item" active-class="active1" tag="li" exact>
+                Việc làm đã ứng tuyển
+            </router-link>
+            <router-link :to="{name:'jobNotification'}" class="nav-item" active-class="active1" tag="li" exact>
+                Thông báo việc làm
+            </router-link>
             <li class="nav-item">
                 <a class="nav-link " href="#">Nhà tuyển dụng xem hồ sơ</a>
             </li>

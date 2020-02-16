@@ -1,13 +1,13 @@
 <template>
 <div id="list-job">
-    <p class="text-count-job">Có {{arrayData.length}} việc làm đã lưu</p>
+    <p class="text-count-job">Có {{arrayData.length}} việc làm {{text}}</p>
     <div class="job " v-for="(item,index) in arrayData" v-bind:key="index">
         <div class="row ">
             <div class="logo-cp"><img :src="item.linkImage" alt=""></div>
             <div class="info">
                 <div class="row-info">
                     <div class="title-job">{{item.location}}</div>
-                    <div class="note"></div>
+                    <slot name="note-icon"></slot>
                 </div>
                 <div class="company text-second-2">{{item.place}}</div>
 
@@ -19,7 +19,7 @@
                         <div class="icon"></div>{{item.money}}
                     </div>
                     <div class="date">
-                        Ngày cập nhập: <span>{{item.dayUpdate}}</span>
+                      <slot name="name-date"></slot><span>{{item.dayUpdate}}</span>
                     </div>
                 </div>
             </div>
@@ -34,18 +34,14 @@ export default {
         arrayData:{
             type: Array,
             default :()=>[]
+        },
+        text :{
+            type:String,
+            default:""
         }
     },
     data() {
         return {
-            // arrayData: [{
-            //     location: "Quản ký bán hàng",
-            //     linkImage :"https://vmptraining.com/wp-content/uploads/TECOMEN.jpg",
-            //     place: "Kangaroo Group",
-            //     city: "Bình Dương",
-            //     money: "20 000 000 - 30 000 000 VND",
-            //     dayUpdate: "12/02/2020"
-            // }]
         }
     },
 }

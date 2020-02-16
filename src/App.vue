@@ -1,15 +1,16 @@
 <template>
 <div>
-      <home></home>
+      <!-- <home></home> -->
+      <router-view></router-view>
 </div>
     
 </template>
 
 <script>
-import home from './components/Home'
+// import home from './components/Home'
 export default {
     components:{
-        home
+        // home
     }
 }
 </script>
