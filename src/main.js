@@ -35,6 +35,11 @@ const  router = new VueRouter({
 })
 //end-router
 
+// crop image
+import VueCropper from 'vue-cropperjs';
+import 'cropperjs/dist/cropper.css';
+Vue.component(VueCropper);
+// end-crop image
 new Vue({
   router,
   render: h => h(App),

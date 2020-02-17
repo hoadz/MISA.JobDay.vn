@@ -5,7 +5,7 @@
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal " id="exampleModal" data-backdrop="static" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog dialog-all" role="document">
             <div class="modal-content body-dialog">
                 <div class="modal-header text-header">
@@ -15,14 +15,19 @@
                     </button>
                 </div>
                 <div class="modal-body dialog-body">
-                    <div class="row cover-image" v-bind:style="{backgroundImage: 'url('+this.imageData+')'}">
+                    <!-- popup crop anh -->
+                    <cropAvata ref="cropAvata" v-bind:src="image"></cropAvata>
+
+                    <div class="row cover-image" v-bind:style="{backgroundImage: 'url('+this.imageData+')' ,backgroundSize: 'cover'}">
+                        <!-- su kien kich vao de hien len input lay anh bia tu may -->
                         <div @click="$refs.inputCoverImg.click()" class="update-cover-image d-flex justify-content-center align-items-center ">
                             <div class="icon-update iconBackground"></div>
                             <div class="text-update">
                                 <p>Cập nhật ảnh bìa</p>
                             </div>
                         </div>
-                        <div class="avt">
+                        <!-- su kien kich vao de lay anh avata -->
+                        <div class="avt" @click="upLoadAvt">
                             <div class="avt-image iconBackground"></div>
                         </div>
                     </div>
@@ -50,8 +55,8 @@
                         <div class="form-group mt-3">
                             <label for="" class="text-form1">Ngày sinh <span>*</span></label>
                             <!-- <input type="email" class="form-control text-form2" aria-describedby="emailHelp" placeholder="Ngày sinh của bạn"> -->
-                            <date-picker   format="DD-MM-YYYY" ></date-picker>
-                            <small  id="" class="form-text text-muted"></small>
+                            <date-picker format="DD-MM-YYYY"></date-picker>
+                            <small id="" class="form-text text-muted"></small>
                         </div>
                         <div class="form-row mt-3">
                             <div class="form-group col-md-6">
@@ -99,39 +104,78 @@
                 </div>
                 <div class="modal-footer dialog-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                    <button type="button" class=" btn-color">Lưu thông tin </button>
+                    <button type="button" class=" btn-color" @click="commitdata">Lưu thông tin </button>
                 </div>
             </div>
         </div>
     </div>
     <input type="file" style="display:none" ref="inputCoverImg" accept="image/*" @change="uploadCoverImg">
+    <input type="file" style="display:none" ref="inputAvtImg" accept="image/*" @change="uploadAvtImg">
 </div>
 </template>
 
 <script>
 import DatePicker from 'vue2-datepicker'
 import 'vue2-datepicker/index.css';
+import cropAvata from './popup-childs/cropAvata.vue'
 export default {
     data() {
         return {
-            imageData:'',
+            imageData: '',
+            image: '',
             infoUser: {
                 jobPosition: "",
-                email :"",
-                phoneNumber :"",
-                adress:"",
-                birthday :"",
-                sex:""
+                email: "",
+                phoneNumber: "",
+                adress: "",
+                birthday: "",
+                sex: ""
             }
         }
     },
     methods: {
+
+        // kich vao input lay anh avata
+        upLoadAvt() {
+            this.$refs.inputAvtImg.click();
+        },
+
+        // su kien cua input lay anh avata 
+        uploadAvtImg(event) {
+            console.log(111);
+            let file = event.target.files[0];
+            // console.log();
+            // this.imageAvata = URL.createObjectURL(file);
+
+             var reader = new FileReader();
+            reader.readAsDataURL(file);
+            const vm = this;
+            reader.onload = function () {
+                vm.image = reader.result;
+                // console.log(123);
+                // vm.image = "hello9";
+                // console.log(typeof(reader.result));
+                console.log(vm.image)
+            };
+            reader.onerror = function (error) {
+                console.log('Error: ', error);
+            };
+
+            this.$refs.cropAvata.active();
+        },
+
+        //su kien gui lai du lieu ve componnent cha la  comptentleft 
+        commitdata() {
+            this.$emit('commitdata', this.imageData);
+        },
+
         clickShowInfoAvt: function () {
             this.$refs.activeClick.click();
         },
-        uploadCoverImg(e){
-            let file =e.target.files[0];
-            this.imageData= URL.createObjectURL(file);
+        uploadCoverImg(e) {
+            let file = e.target.files[0];
+            this.imageData = URL.createObjectURL(file);
+
             // Reference to the DOM input element
             // var input = event.target;
 
@@ -144,31 +188,36 @@ export default {
 
             // reader.readAsDataURL(input.files[0]);
             // console.log('tag', this.imageData);
-        }
+        },
+
     },
     components: {
         DatePicker,
+        cropAvata
     },
 }
 </script>
 
 <style scoped>
-.mx-datepicker{
-        position: relative;
+.mx-datepicker {
+    position: relative;
     display: inline-block;
     width: 100%;
 }
+
 .modal-dialog.dialog-all {
     margin: 0;
     width: 100%;
     left: 50%;
     transform: translateX(-73%) !important;
 }
-.custom-control-input:checked ~ .custom-control-label::before{
+
+.custom-control-input:checked~.custom-control-label::before {
     color: #fff;
     border-color: #ff5969;
     background-color: #ff5969;
 }
+
 button.btn-color {
     width: 160px;
     background-color: #ff5969;
@@ -185,6 +234,7 @@ button.btn-color:hover {
     box-shadow: inset 0 2px 10px rgba(0, 0, 0, .1);
     background-color: #FB727F !important;
 }
+
 label.text-form1 {
     font-size: 15px;
     font-weight: 500;
@@ -204,14 +254,15 @@ label.text-form1 span {
 }
 
 .form-body {
-      margin: 80px 10px 10px 25px;
+    margin: 80px 10px 10px 25px;
     padding-right: 10px;
     padding-left: 2px;
     overflow: auto;
     overflow-x: hidden;
     max-height: calc(100vh - 500px);
-    
+
 }
+
 /* div#exampleModal {
     overflow: hidden;
 } */

@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div class="banneravt"></div>
+    <div v-bind:style="{backgroundImage: 'url('+this.imageData+')' ,backgroundSize: 'cover'}" class="banneravt" ></div>
     <div class="content-banner">
         <div class="row width-row-banner p1">
             <div class="d-flex flex-row banner-top mt-3">
@@ -47,7 +47,7 @@
                 <p>Bạn cần hoàn thiện thông tin cá nhân để có thể hiển thị đầy đủ</p>
             </div>
         </div>
-        
+            <date-picker   format="DD-MM-YYYY" ></date-picker>
         <!-- thong tin ca nhan cua user -->
         <!-- <div class="row inforUser">
             <div class="col-4">
@@ -135,14 +135,14 @@
         </div>
     </div>
     <div>
-        <popup ref="activeClick" />
+        <popup ref="activeClick" v-on:commitdata="commitdata" />
     </div>
 </div>
 </template>
 
 <script>
 
-
+import DatePicker from 'vue2-datepicker'
 import popup from '../popup/dialogAvata.vue'
 import item from './item.vue';
 export default {
@@ -189,18 +189,23 @@ export default {
                 adress:"Hoàn Kiếm - Hà Nội",
                 birthday :"04/09/1993",
                 sex:"Nữ"
-            }
+            },
+            imageData:''
         }
     },
     methods: {
         activeDialog() {
             this.$refs.activeClick.clickShowInfoAvt();
         },
+        commitdata(e){
+            this.imageData =e;
+        }
     },
     components: {
         item,
         popup,
         // Education
+        DatePicker,
 
     }
 }
