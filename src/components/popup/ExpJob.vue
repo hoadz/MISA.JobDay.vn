@@ -2,7 +2,7 @@
 <div>
     <button type="button" style="display:none" class="btn btn-primary" data-toggle="modal" data-target="#ExpJob" ref="active">
     </button>
-    <div class="modal fade" id="ExpJob" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" data-backdrop="static" id="ExpJob" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog  modal-xl dialog-all" role="document">
             <div class="modal-content body-dialog">
                 <div class="modal-header text-header">
@@ -25,9 +25,10 @@
                         </div>
                         <div class="form-group">
                             <label for="" class="text-form1">Thời gian <span>*</span></label>
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                <label class="custom-control-label" for="customCheck1">Tôi đang làm việc ở đây</label>
+                            <div class="custom-control ">
+                                <input type="checkbox" class="custom-control-input" id="a1">
+                                <!-- <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"> -->
+                                <label class="custom-control-label" for="vehicle1">Tôi đang làm việc ở đây</label>
                             </div>
                         </div>
                         <div class="form-row mt-3">

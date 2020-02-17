@@ -16,9 +16,9 @@
                 </div>
                 <div class="modal-body dialog-body">
                     <!-- popup crop anh -->
-                    <cropAvata ref="cropAvata" v-bind:src="image"></cropAvata>
+                    <cropAvata ref="cropAvata" v-bind:src="this.infoUser.imageAvata" v-on:getUrlCrop="getUrlCrop"></cropAvata>
 
-                    <div class="row cover-image" v-bind:style="{backgroundImage: 'url('+this.imageData+')' ,backgroundSize: 'cover'}">
+                    <div class="row cover-image" v-bind:style="{backgroundImage: 'url('+this.infoUser.imageCover+')' ,backgroundSize: 'cover'}">
                         <!-- su kien kich vao de hien len input lay anh bia tu may -->
                         <div @click="$refs.inputCoverImg.click()" class="update-cover-image d-flex justify-content-center align-items-center ">
                             <div class="icon-update iconBackground"></div>
@@ -27,29 +27,29 @@
                             </div>
                         </div>
                         <!-- su kien kich vao de lay anh avata -->
-                        <div class="avt" @click="upLoadAvt">
+                        <div class="avt" @click="upLoadAvt" v-bind:style="[this.checkPushAvt ?{backgroundImage: 'url('+this.infoUser.imageAvataGet+')' ,backgroundSize: 'cover'} :'']">
                             <div class="avt-image iconBackground"></div>
                         </div>
                     </div>
                     <div class="form-body">
                         <div class="form-group">
                             <label for="" class="text-form1">Họ tên <span>*</span></label>
-                            <input type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Họ và tên của bạn">
+                            <input type="email" v-model="infoUser.name" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Họ và tên của bạn">
                             <small id="" class="form-text text-muted"></small>
                         </div>
                         <div class="form-group mt-3">
                             <label for="" class="text-form1">Vị trí công việc <span>*</span></label>
-                            <input type="email" class="form-control text-form2" aria-describedby="emailHelp" placeholder="Vị trí hiện tại của bạn">
+                            <input v-model="infoUser.jobPosition" type="email"  class="form-control text-form2" aria-describedby="emailHelp" placeholder="Vị trí hiện tại của bạn">
                             <small id="" class="form-text text-muted"></small>
                         </div>
                         <div class="form-group mt-3">
                             <label for="exampleInputEmail1" class="text-form1">Email <span>*</span></label>
-                            <input type="email" class="form-control text-form2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                            <input v-model="infoUser.email" type="email" class="form-control text-form2" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                             <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                         </div>
                         <div class="form-group mt-3">
                             <label for="" class="text-form1">Điện thoại <span>*</span></label>
-                            <input type="email" class="form-control text-form2" aria-describedby="emailHelp" placeholder="Số điện thoại hiện tại">
+                            <input v-model="infoUser.phoneNumber" type="email" class="form-control text-form2" aria-describedby="emailHelp" placeholder="Số điện thoại hiện tại">
                             <small id="" class="form-text text-muted"></small>
                         </div>
                         <div class="form-group mt-3">
@@ -64,13 +64,13 @@
                                 <div class="form-row mt-2">
                                     <div class="col-5">
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                                            <input v-model="infoUser.sex" value="Nam" type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
                                             <label class="custom-control-label" for="customRadio1">Nam</label>
                                         </div>
                                     </div>
                                     <div class="col-7">
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                                            <input v-model="infoUser.sex" value="Nữ" type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
                                             <label class="custom-control-label" for="customRadio2">Nữ</label>
                                         </div>
                                     </div>
@@ -82,13 +82,13 @@
                                 <div class="form-row mt-2">
                                     <div class="col-5">
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" id="customRadio3" name="customRadio1" class="custom-control-input">
+                                            <input v-model="infoUser.marry" value="Độc thân" type="radio" id="customRadio3" name="customRadio1" class="custom-control-input">
                                             <label class="custom-control-label" for="customRadio3">Độc thân</label>
                                         </div>
                                     </div>
                                     <div class="col-7">
                                         <div class="custom-control custom-radio">
-                                            <input type="radio" id="customRadio4" name="customRadio1" class="custom-control-input">
+                                            <input value="Đã kết hôn" v-model="infoUser.marry" type="radio" id="customRadio4" name="customRadio1" class="custom-control-input">
                                             <label class="custom-control-label" for="customRadio4">Đã kết hôn</label>
                                         </div>
                                     </div>
@@ -97,7 +97,7 @@
                         </div>
                         <div class="form-group ">
                             <label for="" class="text-form1">Địa chỉ hiện tại <span>*</span></label>
-                            <input type="email" class="form-control text-form2" aria-describedby="emailHelp" placeholder="Địa chỉ hiện tại của bạn">
+                            <input v-model="infoUser.adress" type="email" class="form-control text-form2" aria-describedby="emailHelp" placeholder="Địa chỉ hiện tại của bạn">
                             <small id="" class="form-text text-muted"></small>
                         </div>
                     </div>
@@ -121,15 +121,20 @@ import cropAvata from './popup-childs/cropAvata.vue'
 export default {
     data() {
         return {
-            imageData: '',
-            image: '',
+            
+            imageAvata: '',
+            checkPushAvt:false,
             infoUser: {
+                imageAvataGet:'',
+                imageCover: '',
+                name: '',
                 jobPosition: "",
                 email: "",
                 phoneNumber: "",
                 adress: "",
                 birthday: "",
-                sex: ""
+                sex: "",
+                marry:''
             }
         }
     },
@@ -142,20 +147,20 @@ export default {
 
         // su kien cua input lay anh avata 
         uploadAvtImg(event) {
-            console.log(111);
+            // console.log(111);
             let file = event.target.files[0];
             // console.log();
-            // this.imageAvata = URL.createObjectURL(file);
+            // this.infoUser.imageAvata = URL.createObjectURL(file);
 
              var reader = new FileReader();
             reader.readAsDataURL(file);
             const vm = this;
             reader.onload = function () {
-                vm.image = reader.result;
+                vm.imageAvata = reader.result;
                 // console.log(123);
                 // vm.image = "hello9";
                 // console.log(typeof(reader.result));
-                console.log(vm.image)
+                // console.log(vm.image)
             };
             reader.onerror = function (error) {
                 console.log('Error: ', error);
@@ -164,9 +169,17 @@ export default {
             this.$refs.cropAvata.active();
         },
 
+        // ham nhan url avt tu ben popup con 
+        getUrlCrop(e){
+            this.checkPushAvt=true;
+            this.infoUser.imageAvataGet =e;
+        },
+
+
         //su kien gui lai du lieu ve componnent cha la  comptentleft 
         commitdata() {
-            this.$emit('commitdata', this.imageData);
+            this.$emit('commitdata', this.infoUser);
+            window.$('#exampleModal').modal('hide');
         },
 
         clickShowInfoAvt: function () {
@@ -174,7 +187,7 @@ export default {
         },
         uploadCoverImg(e) {
             let file = e.target.files[0];
-            this.imageData = URL.createObjectURL(file);
+            this.infoUser.imageCover = URL.createObjectURL(file);
 
             // Reference to the DOM input element
             // var input = event.target;

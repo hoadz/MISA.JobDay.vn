@@ -5,7 +5,7 @@
     </button>
 
     <!-- Modal -->
-    <div class="modal fade" id="Education" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" data-backdrop="static" id="Education" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog  modal-xl dialog-all" role="document">
             <div class="modal-content body-dialog">
                 <div class="modal-header text-header">

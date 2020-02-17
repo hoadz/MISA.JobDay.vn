@@ -1,8 +1,8 @@
 <template>
 <div>
-    <button type="button" style="display:none" class="btn btn-primary" data-toggle="modal" data-target="#Project" ref="active">
+    <button type="button"  style="display:none" class="btn btn-primary" data-toggle="modal" data-target="#Project" ref="active">
     </button>
-    <div class="modal fade" id="Project" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade" data-backdrop="static" id="Project" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog  modal-xl dialog-all" role="document">
             <div class="modal-content body-dialog">
                 <div class="modal-header text-header">

@@ -1,10 +1,10 @@
 <template>
 <div>
-    <div v-bind:style="{backgroundImage: 'url('+this.imageData+')' ,backgroundSize: 'cover'}" class="banneravt" ></div>
+    <div v-bind:style="{backgroundImage: 'url('+this.infoUser.imageCover+')' ,backgroundSize: 'cover'}" class="banneravt" ></div>
     <div class="content-banner">
         <div class="row width-row-banner p1">
             <div class="d-flex flex-row banner-top mt-3">
-                <div class="avt mr-auto"></div>
+                <div class="avt mr-auto" v-bind:style="this.checkPushInfo ? [{backgroundImage: 'url('+this.infoUser.imageCover+')' ,backgroundSize: 'cover'}]:''"></div>
                 <div class="banner-right d-flex flex-row">
                     <div class="dropdown mr-3">
                         <a v-on:click.prevent class="  dropdown-banner dropdown-toggle my-auto" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -40,16 +40,17 @@
         </div>
         <div class="row width-row-banner p2">
             <div class="col-sm-12"></div>
-            <p>Nguyễn Thị Như</p>
+            <p v-if="!checkPushInfo">Nguyễn Thị Như</p>
+            <p v-else>{{infoUser.name}}</p>
         </div>
-        <div class="row width-row-banner p3 justify-content-center align-items-center">
+        <div class="row width-row-banner p3 justify-content-center align-items-center" v-if="!checkPushInfo">
             <div v-on:click="activeDialog" class="div want-info row justify-content-center align-items-center">
                 <p>Bạn cần hoàn thiện thông tin cá nhân để có thể hiển thị đầy đủ</p>
             </div>
         </div>
-            <date-picker   format="DD-MM-YYYY" ></date-picker>
+            <date-picker  style="display:none" format="DD-MM-YYYY" ></date-picker>
         <!-- thong tin ca nhan cua user -->
-        <!-- <div class="row inforUser">
+        <div class="row inforUser" v-if="checkPushInfo">
             <div class="col-4">
                 <div class="icon-base icon-infoUser iconBackground"></div>
                  
@@ -87,7 +88,7 @@
                 <p class="t1">Giới tính</p>
                 <p class="t2">{{infoUser.phoneNumber}}</p>
             </div>
-        </div> -->
+        </div>
 
         <!-- muc do hoan thien ho so  -->
         <div class="filesuccess width-row-banner">
@@ -183,22 +184,29 @@ export default {
                 },
             ],
             infoUser: {
+                imageAvataGet:'',
+                imageCover: '',
+                name: '',
                 jobPosition: "Nhân viên thiết kế đồ họa",
                 email :"Thanhha@gmail.com",
                 phoneNumber :"0968 700 888",
                 adress:"Hoàn Kiếm - Hà Nội",
                 birthday :"04/09/1993",
-                sex:"Nữ"
+                sex:"Nữ",
+                marry:''
             },
-            imageData:''
+            checkPushInfo:false,
         }
     },
     methods: {
         activeDialog() {
             this.$refs.activeClick.clickShowInfoAvt();
         },
+        // ham nhan su kien tu component con la dialogAvata.vue nhan object info user
         commitdata(e){
-            this.imageData =e;
+            this.infoUser =e;
+            console.log(this.infoUser);
+            this.checkPushInfo=true;
         }
     },
     components: {
@@ -234,7 +242,7 @@ p.t2 {
 }
 .row.inforUser {
     margin: 0;
-    background-color: #f9f9f9;
+        background-color: #ffffff;
 }
 .icon-base{
     width: 24px;
@@ -637,7 +645,7 @@ p.text2 {
 .main {
     margin: 0;
     border-radius: 4px;
-    box-shadow: inset 0 3px 6px rgba(0, 0, 0, .1);
+    /* box-shadow: inset 0 3px 6px rgba(0, 0, 0, .1); */
     overflow: hidden;
 }
 

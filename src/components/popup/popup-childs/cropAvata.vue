@@ -9,7 +9,7 @@
     <div class="modal-content c">
       <div class="modal-header h">
         <h5 class="modal-title"> Cập nhật Avatar </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close"  @click="close" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -21,7 +21,7 @@
       </div>
       <div class="modal-footer f">
         <button type="button" class="btn btn-secondary" @click="close">Hủy</button>
-        <button type="button" class="btn btn-primary btn-color">Lưu</button>
+        <button type="button" class="btn btn-primary btn-color" @click="pushUrl">Lưu</button>
       </div>
     </div>
   </div>
@@ -42,12 +42,20 @@ export default {
 
     },
     methods: {
+        // ham nhan su kien kich o dialog cha cua no la dialogAvata
         active: function(){
             this.$refs.show.click();
         },
         close: function(){
             window.$('#crop-avata').modal('hide')
         // this.$refs.cropAvata.modal('hide');
+        },
+
+        // ham xu ly va truyen du lieu len popup cha
+        pushUrl(){
+            let a =this.$refs.cropper.getCroppedCanvas();
+            this.$emit('getUrlCrop',a.toDataURL("image/png"));
+            this.close();
         }
     },
     components: {
