@@ -26,30 +26,7 @@ export default {
             state: "favoriteJob",
             textHeader: "Bạn chưa có việc làm ưa thích",
             text: "ưa thích",
-            arrayData: [{
-                    location: "Quản ký bán hàng",
-                    linkImage: "https://vmptraining.com/wp-content/uploads/TECOMEN.jpg",
-                    place: "Kangaroo Group",
-                    city: "Bình Dương",
-                    money: "20 000 000 - 30 000 000 VND",
-                    dayUpdate: "12/02/2020"
-                },
-                {
-                    location: "Quản ký bán hàng",
-                    linkImage: "https://vmptraining.com/wp-content/uploads/TECOMEN.jpg",
-                    place: "Kangaroo Group",
-                    city: "Bình Dương",
-                    money: "20 000 000 - 30 000 000 VND",
-                    dayUpdate: "12/02/2020"
-                },
-                {
-                    location: "Quản ký bán hàng",
-                    linkImage: "https://vmptraining.com/wp-content/uploads/TECOMEN.jpg",
-                    place: "Kangaroo Group",
-                    city: "Bình Dương",
-                    money: "20 000 000 - 30 000 000 VND",
-                    dayUpdate: "12/02/2020"
-                }
+            arrayData: [
             ]
         }
     },

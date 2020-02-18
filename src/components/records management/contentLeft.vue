@@ -1,10 +1,11 @@
 <template>
 <div>
-    <div v-bind:style="{backgroundImage: 'url('+this.infoUser.imageCover+')' ,backgroundSize: 'cover'}" class="banneravt" ></div>
+    <div v-bind:style="{backgroundImage: 'url('+imageCover+')' ,backgroundSize: 'cover'}" class="banneravt"></div>
     <div class="content-banner">
         <div class="row width-row-banner p1">
             <div class="d-flex flex-row banner-top mt-3">
-                <div class="avt mr-auto" v-bind:style="this.checkPushInfo ? [{backgroundImage: 'url('+this.infoUser.imageCover+')' ,backgroundSize: 'cover'}]:''"></div>
+                <!-- check theo dieu kien khi gui popup ve cho dialog cha -->
+                <div class="avt mr-auto" v-bind:style="this.checkPushInfo ? [{backgroundImage: 'url('+imageAvataGet+')' ,backgroundSize: 'cover'}]:''"></div>
                 <div class="banner-right d-flex flex-row">
                     <div class="dropdown mr-3">
                         <a v-on:click.prevent class="  dropdown-banner dropdown-toggle my-auto" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -31,8 +32,8 @@
                         </div>
                         <div class="iconBackground icon-three" data-toggle="dropdown"></div>
                     </div>
-
-                    <div class="icon2 mr-3">
+                    <!-- su kien khi kich vao nut sua va hien thi lai pupop thong tin ca nhan -->
+                    <div class="icon2 mr-3" v-on:click="activeDialog">
                         <div class="iconBackground"></div>
                     </div>
                 </div>
@@ -40,53 +41,54 @@
         </div>
         <div class="row width-row-banner p2">
             <div class="col-sm-12"></div>
-            <p v-if="!checkPushInfo">Nguyễn Thị Như</p>
-            <p v-else>{{infoUser.name}}</p>
+            <p v-if="!checkPushInfo">Nguyễn Thị Như{{test}}</p>
+            <p v-else>{{name}}</p>
         </div>
         <div class="row width-row-banner p3 justify-content-center align-items-center" v-if="!checkPushInfo">
+            <!-- su kien hien thi popup cap nhap thong tin ca nhan -->
             <div v-on:click="activeDialog" class="div want-info row justify-content-center align-items-center">
                 <p>Bạn cần hoàn thiện thông tin cá nhân để có thể hiển thị đầy đủ</p>
             </div>
         </div>
-            <date-picker  style="display:none" format="DD-MM-YYYY" ></date-picker>
+        <date-picker style="display:none" format="DD-MM-YYYY"></date-picker>
         <!-- thong tin ca nhan cua user -->
         <div class="row inforUser" v-if="checkPushInfo">
             <div class="col-4">
-                <div class="icon-base icon-infoUser iconBackground"></div>
-                 
+                <div class="icon-base icon-infoUserParen iconBackground"></div>
+
                 <p class="t1">Vị trí công việc</p>
-                <p class="t2">{{infoUser.jobPosition}}</p>
+                <p class="t2">{{jobPosition}}</p>
             </div>
             <div class="col-4">
-                 <div class="icon-base icon-infoUser1 iconBackground"></div>
-                 
+                <div class="icon-base icon-infoUserParen1 iconBackground"></div>
+
                 <p class="t1">Email</p>
-                <p class="t2">{{infoUser.email}}</p>
+                <p class="t2">{{email}}</p>
             </div>
             <div class="col-4">
-                 <div class="icon-base icon-infoUser2 iconBackground"></div>
-                 
+                <div class="icon-base icon-infoUserParen2 iconBackground"></div>
+
                 <p class="t1">Số điện thoại</p>
-                <p class="t2">{{infoUser.phoneNumber}}</p>
+                <p class="t2">{{phoneNumber}}</p>
             </div>
 
-             <div class="col-4">
-                <div class="icon-base icon-infoUser3 iconBackground"></div>
-                 
+            <div class="col-4">
+                <div class="icon-base icon-infoUserParen3 iconBackground"></div>
+
                 <p class="t1">Địa chỉ</p>
-                <p class="t2">{{infoUser.jobPosition}}</p>
+                <p class="t2">{{adress}}</p>
             </div>
             <div class="col-4">
-                 <div class="icon-base icon-infoUser4 iconBackground"></div>
-                 
+                <div class="icon-base icon-infoUserParen4 iconBackground"></div>
+
                 <p class="t1">Sinh nhật</p>
-                <p class="t2">{{infoUser.email}}</p>
+                <p class="t2">{{birthday}}</p>
             </div>
             <div class="col-4">
-                 <div class="icon-base icon-infoUser5 iconBackground"></div>
-                 
+                <div class="icon-base icon-infoUserParen5 iconBackground"></div>
+
                 <p class="t1">Giới tính</p>
-                <p class="t2">{{infoUser.phoneNumber}}</p>
+                <p class="t2">{{sex}}</p>
             </div>
         </div>
 
@@ -136,20 +138,18 @@
         </div>
     </div>
     <div>
-        <popup ref="activeClick" v-on:commitdata="commitdata" />
+        <popup ref="activeClick" v-on:commitdataAvt="commitdataAvt" />
     </div>
 </div>
 </template>
 
 <script>
-
 import DatePicker from 'vue2-datepicker'
 import popup from '../popup/dialogAvata.vue'
 import item from './item.vue';
 export default {
     data() {
         return {
-            //titleItems: ["Mục tiêu nghề nghiệp", "Học vấn và bằng cấp", "Kinh nghiệm làm việc", "Kỹ năng", "Giải thưởng", "Khóa học", "Dự án", "Hoạt động xã hội và tình nguyện"],
             items: [{
                     title: "Mục tiêu nghề nghiệp",
                     name: "CareerGoals"
@@ -183,7 +183,7 @@ export default {
                     name: "VolunteerActivities"
                 },
             ],
-            infoUser: {
+            // infoUserParen: {
                 imageAvataGet:'',
                 imageCover: '',
                 name: '',
@@ -194,20 +194,43 @@ export default {
                 birthday :"04/09/1993",
                 sex:"Nữ",
                 marry:''
-            },
-            checkPushInfo:false,
+            // }
+            ,
+            test: '',
+            checkPushInfo: false,
         }
     },
+    computed: {
+
+    },
+    beforeUpdate(){
+        console.log('tag', 'update')
+    },
     methods: {
+        // bind du lieu 
+        updateData(e){
+            this.imageAvataGet = e.imageAvataGet;
+            this.imageCover = e.imageCover;
+            this.name = e.name;
+            this.jobPosition = e.jobPosition;
+            this.email = e.email;
+            this.phoneNumber = e.phoneNumber;
+            this.adress = e.adress;
+            this.birthday = e.birthday;
+            this.sex = e.sex;
+            this.marry = e.marry;
+        },
+        // ham nhan du lieu tu ben popup dialogAvata
+        commitdataAvt(e) {
+            // console.log('contentleft')
+            // Object.assign(this.infoUserParen, e);
+            this.updateData(e)
+            //console.log(this.infoUserParen);
+            this.checkPushInfo=true;
+        },
         activeDialog() {
             this.$refs.activeClick.clickShowInfoAvt();
         },
-        // ham nhan su kien tu component con la dialogAvata.vue nhan object info user
-        commitdata(e){
-            this.infoUser =e;
-            console.log(this.infoUser);
-            this.checkPushInfo=true;
-        }
     },
     components: {
         item,
@@ -220,11 +243,12 @@ export default {
 </script>
 
 <style scoped>
-.mx-datepicker{
-        position: relative;
+.mx-datepicker {
+    position: relative;
     display: inline-block;
     width: 100%;
 }
+
 .inforUser .col-4 {
     padding-left: 24px !important;
     margin-top: 20px;
@@ -240,35 +264,41 @@ p.t2 {
     font-size: 15px;
     color: #212121;
 }
+
 .row.inforUser {
     margin: 0;
-        background-color: #ffffff;
+    background-color: #ffffff;
 }
-.icon-base{
+
+.icon-base {
     width: 24px;
     height: 24px;
     margin-bottom: 10px;
 }
-.icon-infoUser {
+
+.icon-infoUserParen {
     background-position: -264px -56px;
 }
-.icon-infoUser1 {
+
+.icon-infoUserParen1 {
     background-position: -408px -56px;
 }
-.icon-infoUser2 {
+
+.icon-infoUserParen2 {
     background-position: -432px -56px;
 }
-.icon-infoUser3 {
+
+.icon-infoUserParen3 {
     background-position: -456px -56px;
 }
-.icon-infoUser4 {
+
+.icon-infoUserParen4 {
     background-position: -480px -56px;
 }
-.icon-infoUser5 {
+
+.icon-infoUserParen5 {
     background-position: -504px -56px;
 }
-
-
 
 .dropdown-banner:hover {
     box-shadow: inset 0 2px 10px rgba(0, 0, 0, .1);

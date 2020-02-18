@@ -3,19 +3,21 @@
     <menu-profile></menu-profile>
     <div class="row main">
         <div class=" col-8 left containerBanner">
-           <!-- <content-left></content-left> -->
-        <router-view ></router-view>
+            <!-- <content-left></content-left> -->
+            <transition name="face">
+                <router-view></router-view>
+            </transition>
+
         </div>
         <div class="col-4 right">
             <content-right></content-right>
         </div>
     </div>
-    
+
 </div>
 </template>
 
 <script>
-
 // import popup from '../popup/dialogAvata.vue'
 // import contentLeft from './contentLeft.vue'
 
@@ -30,15 +32,35 @@ export default {
     },
     components: {
         contentRight,
-        menuProfile 
+        menuProfile
         // contentLeft
-
 
     }
 }
 </script>
 
 <style scoped>
+/* .face-enter{
+    opacity: 0;
+  }
+.face-enter-to{
+    opacity: 1;
+}
+.face-enter-active {
+    transition:opacity 1s;
+}
+
+.face-leave{
+    opacity: 1;
+}
+.face-leave-active{
+transition :opacity 1s;
+
+}
+.face-leave-to{
+    opacity: 0;
+} */
+
 
 
 .main {

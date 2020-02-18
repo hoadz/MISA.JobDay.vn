@@ -4,7 +4,7 @@
         <button style="display:none" ref="show" type="button" class="btn btn-primary" data-toggle="modal" data-target="#crop-avata"></button>
 
 <!-- Modal -->
-<div class="modal fade" ref="cropAvata" id="crop-avata" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="khaimodal" aria-hidden="true">
+<div class="modal fade" ref="cropAvata" id="crop-avata" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="crop-avata" aria-hidden="true">
   <div class="modal-dialog d" role="document">
     <div class="modal-content c">
       <div class="modal-header h">
@@ -14,10 +14,14 @@
         </button>
       </div>
       <div class="modal-body b">
-            <vue-cropper :minCropBoxWidth=200 :minCropBoxHeight=200 :minContainerWidth=578 :minContainerHeight=436  ref="cropper" :zoomable= 'false'  :src="ten" alt="Source Image" />
-        <!-- <div class="content-img">
-            
-        </div> -->
+            <vue-cropper  
+            :minCropBoxWidth=200 
+            :minCropBoxHeight=200 
+            :minContainerWidth=578 
+            :minContainerHeight=436  
+            ref="cropper" 
+            :zoomable= 'false'  
+            :src="src" alt="Source Image" />
       </div>
       <div class="modal-footer f">
         <button type="button" class="btn btn-secondary" @click="close">Hủy</button>
@@ -34,17 +38,31 @@ import 'cropperjs/dist/cropper.css';
 export default {
     data() {
         return {
-             ten: 'https://znews-photo.zadn.vn/w1024/Uploaded/kbd_bcvi/2019_11_23/5d828e8d6f24eb1eb5148f5c.jpg'
+             ten: ''
         }
     },
     props:{
-        src:String
+        src:{
+            type: String,
+            default: ''
+        }
 
     },
     methods: {
         // ham nhan su kien kich o dialog cha cua no la dialogAvata
         active: function(){
+            // console.log(1);
+            // var vm =this;
+            // vm.ten = vm.src;
+            // console.log(this.ten);
+            //  vm.$refs.cropper.replace(vm.src);
+            //this.loadImgAvt();
             this.$refs.show.click();
+   
+        },
+        loadImgAvt(){
+            this.ten = this.src;
+            
         },
         close: function(){
             window.$('#crop-avata').modal('hide')
@@ -56,11 +74,32 @@ export default {
             let a =this.$refs.cropper.getCroppedCanvas();
             this.$emit('getUrlCrop',a.toDataURL("image/png"));
             this.close();
-        }
+        },
+
+
+
+        
+
+
     },
+    watch: {
+        src: function (newQuestion) {
+            // console.log('old',oldQuestion );
+            // console.log('new', newQuestion);
+            
+             this.src =newQuestion;
+            // console.log("src :", this.src);
+          this.$refs.cropper.replace(this.src);
+    }
+  },
     components: {
         VueCropper,
     },
+    // mounted:{
+    //     bb :function(){
+    //         console.log(this.bb);
+    //     }
+    // }
 }
 </script>
 <style  scoped>

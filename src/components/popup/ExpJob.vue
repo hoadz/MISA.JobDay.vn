@@ -23,14 +23,15 @@
                             <input v-model="DataMain.position" type="email" class="form-control  text-form2" aria-describedby="emailHelp" placeholder="Nhân viên văn phòng">
                             <small id="" class="form-text text-muted"></small>
                         </div>
-                        <div class="form-group">
+
+                         <div class="form-group">
                             <label for="" class="text-form1">Thời gian <span>*</span></label>
-                            <div class="custom-control ">
-                                <input type="checkbox" class="custom-control-input" id="a1">
-                                <!-- <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"> -->
-                                <label class="custom-control-label" for="vehicle1">Tôi đang làm việc ở đây</label>
+                            <div class="custom-control custom-checkbox">
+                                <input   true-value="true" false-value="false" type="checkbox" class="custom-control-input" id="customCheck1">
+                                <label class="custom-control-label" for="customCheck1">Tôi đang làm việc ở đây</label>
                             </div>
                         </div>
+                        
                         <div class="form-row mt-3">
                             <div class="form-group col-md-6">
                                 <label for="" class="text-form1">Thời gian bắt đầu </label>

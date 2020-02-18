@@ -16,7 +16,7 @@
                 </div>
                 <div class="modal-body dialog-body">
                     <!-- popup crop anh -->
-                    <cropAvata ref="cropAvata" v-bind:src="this.infoUser.imageAvata" v-on:getUrlCrop="getUrlCrop"></cropAvata>
+                    <cropAvata ref="cropAvata" v-bind:src="imageAvata" v-on:getUrlCrop="getUrlCrop"></cropAvata>
 
                     <div class="row cover-image" v-bind:style="{backgroundImage: 'url('+this.infoUser.imageCover+')' ,backgroundSize: 'cover'}">
                         <!-- su kien kich vao de hien len input lay anh bia tu may -->
@@ -55,7 +55,7 @@
                         <div class="form-group mt-3">
                             <label for="" class="text-form1">Ngày sinh <span>*</span></label>
                             <!-- <input type="email" class="form-control text-form2" aria-describedby="emailHelp" placeholder="Ngày sinh của bạn"> -->
-                            <date-picker format="DD-MM-YYYY"></date-picker>
+                            <date-picker format="DD-MM-YYYY" ></date-picker>
                             <small id="" class="form-text text-muted"></small>
                         </div>
                         <div class="form-row mt-3">
@@ -104,7 +104,7 @@
                 </div>
                 <div class="modal-footer dialog-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                    <button type="button" class=" btn-color" @click="commitdata">Lưu thông tin </button>
+                    <button type="button" class=" btn-color" @click="commitdataAvt">Lưu thông tin </button>
                 </div>
             </div>
         </div>
@@ -121,7 +121,6 @@ import cropAvata from './popup-childs/cropAvata.vue'
 export default {
     data() {
         return {
-            
             imageAvata: '',
             checkPushAvt:false,
             infoUser: {
@@ -145,45 +144,17 @@ export default {
             this.$refs.inputAvtImg.click();
         },
 
-        // su kien cua input lay anh avata 
-        uploadAvtImg(event) {
-            // console.log(111);
-            let file = event.target.files[0];
-            // console.log();
-            // this.infoUser.imageAvata = URL.createObjectURL(file);
-
-             var reader = new FileReader();
-            reader.readAsDataURL(file);
-            const vm = this;
-            reader.onload = function () {
-                vm.imageAvata = reader.result;
-                // console.log(123);
-                // vm.image = "hello9";
-                // console.log(typeof(reader.result));
-                // console.log(vm.image)
-            };
-            reader.onerror = function (error) {
-                console.log('Error: ', error);
-            };
-
-            this.$refs.cropAvata.active();
-        },
-
         // ham nhan url avt tu ben popup con 
         getUrlCrop(e){
             this.checkPushAvt=true;
             this.infoUser.imageAvataGet =e;
         },
 
-
         //su kien gui lai du lieu ve componnent cha la  comptentleft 
-        commitdata() {
-            this.$emit('commitdata', this.infoUser);
+        commitdataAvt() {
+            // console.log('DialogAVt')
+            this.$emit('commitdataAvt', this.infoUser);
             window.$('#exampleModal').modal('hide');
-        },
-
-        clickShowInfoAvt: function () {
-            this.$refs.activeClick.click();
         },
         uploadCoverImg(e) {
             let file = e.target.files[0];
@@ -202,6 +173,39 @@ export default {
             // reader.readAsDataURL(input.files[0]);
             // console.log('tag', this.imageData);
         },
+        // nhan su kien kich hoat o ben component cha la contentleft
+        clickShowInfoAvt: function () {
+            this.$refs.activeClick.click();
+        },
+        // 2 ham nhan hinh anh va cover sang dang 64bit va chuyen sang ben cropavata
+        uploadAvtImg(e) {
+            var vm = this;
+            new Promise(function (resolve) {
+                vm.imageAvata = ''
+                resolve();
+            }).then(function () {
+
+                var files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                vm.createImage(files[0]);
+            });
+
+        },
+        createImage(file) {
+            var vm = this;
+            var reader = new FileReader();
+            //var image = new Image();
+            reader.onload = (e) => {
+                console.log("createImage-onload" )
+                vm.imageAvata = e.target.result;
+                // console.log(vm.imageAvata)
+                 this.$refs.cropAvata.active();
+
+            };
+            reader.readAsDataURL(file);
+        },
+
 
     },
     components: {
