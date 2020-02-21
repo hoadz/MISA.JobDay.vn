@@ -1,64 +1,63 @@
 <template>
-    <div class="containerbody">
-        <div class="containerHome">
-            <header-home></header-home>   
+<div class="containerbody">
+    <div class="containerHome">
+        <header-home></header-home>
         <div class="content">
-            <!-- <menu-home></menu-home> -->
-            <!-- <ContentHome></ContentHome> -->
             <router-view></router-view>
         </div>
         <footerHome></footerHome>
     </div>
-    </div>
-    
+</div>
 </template>
+
 <script>
 import headerHome from './Layout/header.vue'
-// import menuHome from './Layout/menu.vue'
 import footerHome from './Layout/footer.vue'
-
-// import ContentHome from './records management/ContentHome.vue'
 export default {
-    components:{
+    components: {
         headerHome,
-        // menuHome,
-        // ContentHome,
         footerHome
 
     }
 }
 </script>
-<style >
+
+<style>
 @font-face {
     font-family: Google-san;
     src: url(/GoogleSans-Bold.ttf) format('woff');
-    font-weight:700;
-    font-style:italic;
+    font-weight: 700;
+    font-style: italic;
 }
+
 @font-face {
     font-family: Google-san;
     src: url(../FontGoogleSan/GoogleSans-BoldItalic.ttf) format('woff');
     font-weight: 700;
-    font-style:italic;
+    font-style: italic;
 }
+
 @font-face {
     font-family: Google-san;
     src: url(../FontGoogleSan/GoogleSans-Italic.ttf) format('woff');
     font-weight: 500;
     font-style: italic;
 }
+
 @font-face {
     font-family: Google-san;
     src: url(../FontGoogleSan/GoogleSans-Medium.ttf) format('woff');
     font-weight: 500;
     font-style: normal;
 }
+
 @font-face {
     font-family: Google-san;
     src: url(../FontGoogleSan/GoogleSans-MediumItalic.ttf) format('woff');
     font-weight: 500;
     font-style: italic;
 }
+
 @font-face {
     font-family: Google-san;
     src: url(../FontGoogleSan/GoogleSans-Regular.ttf) format('woff');
@@ -66,33 +65,39 @@ export default {
     font-style: normal;
 }
 
-
 * {
     font-family: Google-san, sans-serif !important;
 }
-*{
-    font-family: 'Open Sans', sans-serif ;
-}
-.ck-editor .ck-editor__main .ck-content {
-        min-height: calc(179px - 38px);
-    }
 
-.btn:focus, .btn.focus {
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.ck-editor .ck-editor__main .ck-content {
+    min-height: calc(179px - 38px);
+}
+
+.btn:focus,
+.btn.focus {
     box-shadow: none;
 }
 
-input:focus, input.focus {
+input:focus,
+input.focus {
     /* border: 1px solid #ff5969 !important; */
 }
-.containerHome{
+
+.containerHome {
     margin: 0 auto;
     background-color: #f0f0f0;
 }
-.content{
+
+.content {
     width: calc(100% - 280px);
     margin: 0 auto;
 }
-.iconBackground{
-       background-image: url('../assets/icon.svg');
-    }
+
+.iconBackground {
+    background-image: url('../assets/icon.svg');
+}
 </style>

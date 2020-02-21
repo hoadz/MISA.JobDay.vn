@@ -3,7 +3,6 @@
     <menu-profile></menu-profile>
     <div class="row main">
         <div class=" col-8 left containerBanner">
-            <!-- <content-left></content-left> -->
             <transition name="face">
                 <router-view></router-view>
             </transition>
@@ -18,9 +17,6 @@
 </template>
 
 <script>
-// import popup from '../popup/dialogAvata.vue'
-// import contentLeft from './contentLeft.vue'
-
 import menuProfile from '../Layout/menu.vue'
 import contentRight from './ContentRight.vue'
 export default {
